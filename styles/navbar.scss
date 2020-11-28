@@ -1,0 +1,42 @@
+@import './variables.scss';
+
+nav {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background: $navBgColor;
+  color: #ffffff;
+  width: 100%;
+  height: $navHeight;
+  min-width: $leftMinWidth + $rightMinWidth;
+  border: $slimBorder;
+
+  .container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 40px;
+    padding: 0;
+
+    li {
+      flex: 1;
+      text-align: center;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.015em;
+      list-style-type: none;
+    }
+
+    .hello {
+      font-size: 25px;
+    }
+
+    .logo-txt {
+      text-align: left;
+    }
+
+    .signout {
+      text-align: right;
+    }
+  }
+}

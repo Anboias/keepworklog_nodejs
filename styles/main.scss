@@ -1,0 +1,28 @@
+@import './variables.scss';
+
+main {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: $navHeight;
+    display: grid;
+    grid-template-columns: minmax($leftMinWidth, 1fr) minmax($rightMinWidth, 3fr);
+    grid-template-rows: 200px 1fr;
+    background-color: $rightBgColor;
+
+    #worklog,
+    #weeks {
+        background-color: $leftBgColor;
+        color: $leftFontColor;
+        padding: 0 40px;
+    }
+
+    #todonew,
+    #todolist {
+        color: $rightFontColor;
+        padding: 0 40px;
+        margin: 0;
+    }
+
+}

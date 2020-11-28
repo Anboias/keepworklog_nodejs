@@ -1,0 +1,78 @@
+@import './variables.scss';
+
+@include draggable;
+
+#weeks {
+
+    .container {
+        padding-bottom: 30px;
+
+        .weekday {
+            position: relative;
+            margin-bottom: 50px;
+            margin-top: 25px;
+            // font-size: 12px; // for FontAwesome's first icon
+
+            h1 {
+                position: relative;
+                font-size: 14px;
+                border-bottom: 1px solid $leftFontColor;
+                text-transform: uppercase;
+                padding-bottom: 0;
+                margin-bottom: 3px;
+            }
+
+            .fa-copy {
+                position: absolute;
+                top: 1px;
+                right: 1px;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+
+            .weekday-list {
+                list-style-type: none;
+                padding-top: 0;
+                margin: 0;
+                padding: 0;
+                // border: 1px solid white;
+                background: rgba(255, 255, 255, 0.1);
+                min-height: 30px;
+
+                li {
+                    position: relative;
+                    padding: 5px;
+                    padding-left: 0;
+                    font-size: 12px;
+
+                    .fa-check-circle {
+                        position: absolute;
+                        display: block;
+                        left: -15px;
+                        top: 6px;
+                        color: $green;
+                    }
+
+                    p {
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+
+
+
+                /* Hide elements from the TODO list moved here from the right column */
+                .fa-ellipsis-v,
+                .fa-trash-alt,
+                .fa-pencil-alt,
+                .switch {
+                    display: none;
+                }
+
+
+            }
+        }
+    }
+}

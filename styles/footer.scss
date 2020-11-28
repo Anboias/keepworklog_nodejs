@@ -1,0 +1,18 @@
+@import './variables.scss';
+
+#footer {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    height: 25px;
+    background-color: $gray;
+    bottom: 0;
+    width: 100%;
+
+    p {
+        position: relative;
+        font-size: 12px;
+        color: $leftBgColor;
+        margin: auto;
+    }
+}

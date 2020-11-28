@@ -1,0 +1,41 @@
+@import './variables.scss';
+
+#worklog {
+    border-bottom: 1px solid $rightBgColor;
+    display: flex;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        text-transform: uppercase;
+        margin: auto;
+
+        p {
+            font-size: 24px;
+            letter-spacing: 0.345em;
+            align-self: center;
+            text-align: center;
+        }
+
+        select {
+            background-color: $leftBgColor;
+            color: $leftFontColor;
+            align-self: center;
+            padding: 7px;
+            border-style: none;
+            border-radius: 5px;
+
+            &:hover {
+                transform: scale(1.5);
+                transition: all 0.5s;
+
+                text-decoration-line: underline;
+            }
+
+            option {
+                background-color: $leftBgColor;
+                color: $leftFontColor;
+            }
+        }
+    }
+}

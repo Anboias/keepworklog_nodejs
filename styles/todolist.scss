@@ -1,0 +1,110 @@
+@import './variables.scss';
+@import './elements/slider.scss'; // Toggle is styled separately
+
+#todolist {
+  margin: $rightSectionMargin;
+
+  .container {
+    padding-bottom: 30px;
+
+    .sortable {
+      min-height: 100vh;
+    }
+
+    .todo-list {
+      margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+      list-style-type: none;
+
+      @include draggable;
+
+      li {
+        //   height: 48px;
+        margin: 25px 0;
+        @include box-style;
+
+        &:hover {
+          transform: scaleY(1.2);
+          transform: scaleX(1.01);
+          // transition: all 0.1s;
+          box-shadow: 5px 5px 5px rgba(17, 47, 95, 0.5);
+        }
+
+        .todo-container {
+
+          position: relative;
+          border-left: 5px solid $leftBgColor;
+          color: $rightFontColor;
+          display: flex;
+          align-items: center;
+          font-size: 10px; // for FontAwesome
+
+          .fa-ellipsis-v,
+          .fa-trash-alt,
+          .fa-pencil-alt {
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            color: $gray;
+            cursor: pointer;
+            padding: 2px;
+
+          }
+
+          .fa-ellipsis-v {
+            left: 4px;
+            top: auto;
+            bottom: auto;
+            color: $leftBgColor;
+          }
+
+          .fa-trash-alt {
+
+            &:hover {
+              color: $rightFontColor;
+              transform: scale(1.2);
+              color: rgb(255, 29, 29);
+            }
+          }
+
+          .fa-pencil-alt {
+            top: auto;
+            bottom: 4px;
+
+            &:hover {
+              color: $green;
+            }
+
+          }
+
+          p {
+            // cursor: text;
+            margin: 15px 60px 15px 20px;
+            padding: 2px;
+            font-size: 14px;
+            line-height: 130%;
+          }
+
+          /* Hide elements from the TODO-list moved here from the Week column */
+          .fa-check-circle {
+            display: none;
+          }
+
+        }
+
+        .todo-done {
+          border-color: $green;
+          color: $gray;
+          font-weight: 200;
+          font-style: italic;
+
+          .fa-ellipsis-v {
+            color: $gray;
+          }
+        }
+      }
+    }
+
+  }
+}

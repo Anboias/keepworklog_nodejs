@@ -1,0 +1,29 @@
+@import './variables.scss';
+
+/* HTML/BODY */
+html,
+body {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $rightBgColor;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: $fontSizeDefault;
+}
+
+/* IMPORTS */
+@import './navbar.scss';
+@import './main.scss';
+@import './worklog.scss';
+@import './todonew.scss';
+@import './todolist.scss';
+@import './weeks.scss';
+@import './footer.scss';
+@import './elements/draggables.scss';
