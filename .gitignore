@@ -30,6 +30,8 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+/utils/fbConfig.js
+keepworklog-firebase-adminsdk-38g3t-853b72f379.json
 
 # vercel
 .vercel

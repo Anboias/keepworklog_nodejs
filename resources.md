@@ -7,17 +7,21 @@ SCSS
 npm install -g sass
 sass --watch scss:css
 
-MongoDB 
+MongoDB
 https://www.youtube.com/watch?v=SBvmnHTQIPY&ab_channel=TraversyMedia
 
------
+---
+
 Steps:
 
 npx create-next-app appname
+
 <!-- npm i mongoose -->
+
 npx create-next-app --example with-mongodb mflix
 a
 npm i react-dnd
 npm i react-dnd-html5-backend
 https://www.youtube.com/watch?v=NW8erkUgqus
 
+https://www.youtube.com/watch?v=qBGAdenirbs
