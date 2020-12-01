@@ -10,6 +10,7 @@ nav {
   height: $navHeight;
   min-width: $leftMinWidth + $rightMinWidth;
   border: $slimBorder;
+  z-index: 99;
 
   .container {
     display: flex;

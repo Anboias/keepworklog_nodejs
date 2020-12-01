@@ -19,9 +19,11 @@ npx create-next-app appname
 <!-- npm i mongoose -->
 
 npx create-next-app --example with-mongodb mflix
-a
 npm i react-dnd
 npm i react-dnd-html5-backend
 https://www.youtube.com/watch?v=NW8erkUgqus
 
+NextJS Firebase Auth Crash Course
 https://www.youtube.com/watch?v=qBGAdenirbs
+npm install firebase firebase-admin nookies
+? npm @chakra-ui/core

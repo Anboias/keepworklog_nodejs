@@ -1,4 +1,4 @@
-const Navbar = () => (
+const Navbar = ({ handleLogout }) => (
   <nav>
     <ul className="container">
       <img className="logo-img" src="../assets/logo.svg" alt="Logo" />
@@ -9,7 +9,7 @@ const Navbar = () => (
         <a>Hello, Bogdan</a>
       </li>
       <li className="signout">
-        <a>Sign out</a>
+        <a onClick={handleLogout}>Sign out</a>
       </li>
     </ul>
   </nav>
