@@ -1,251 +1,43 @@
+import Weekday from './Weekday';
+
 const Weeks = () => (
   <section id="weeks">
-  <div className="container">
-    <div className="weekday">
-      <h1>Monday, 23</h1>
-      <i className="far fa-copy"></i>
+    <div className="container">
+      <Weekday
+        day="Monday, 23"
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
+                eligendi fugiat."
+      />
 
-      <ul className="weekday-list sortable">
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
+      <Weekday
+        day="Tuesday, 24"
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
+                eligendi fugiat."
+      />
 
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
+      <Weekday
+        day="Wednesday, 25"
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
+                eligendi fugiat."
+      />
 
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
+      <Weekday
+        day="Thursday, 26"
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
+                eligendi fugiat."
+      />
 
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
+      <Weekday
+        day="Friday, 27"
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
+                eligendi fugiat."
+      />
 
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-      </ul>
+      <Weekday day="Saturday, 28" content={null} />
+
+      <Weekday day="Sunday, 29" content={null} />
     </div>
-
-    <div className="weekday">
-      <h1>Tuesday, 24</h1>
-      <i className="far fa-copy"></i>
-      <ul className="weekday-list sortable">
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
-
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
-
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div className="weekday">
-      <h1>Wednesday, 25</h1>
-      <i className="far fa-copy"></i>
-      <ul className="weekday-list sortable">
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
-
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
-
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div className="weekday">
-      <h1>Thursday, 26</h1>
-      <i className="far fa-copy"></i>
-      <ul className="weekday-list sortable">
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
-
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
-
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div className="weekday">
-      <h1>Friday, 27</h1>
-      <i className="far fa-copy"></i>
-      <ul className="weekday-list sortable">
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
-
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-        <li className="draggable" draggable="true">
-          <div className="todo-container">
-            {/* Start group */}
-
-            <i className="fas fa-check-circle"></i>
-            <i className="fas fa-ellipsis-v"></i>
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
-            <i className="fas fa-trash-alt"></i
-            ><i className="fas fa-pencil-alt"></i>
-            {/* End group */}
-
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
-              Suscipit eligendi fugiat.
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div className="weekday">
-      <h1>Saturday, 28</h1>
-      <i className="far fa-copy"></i>
-      <ul className="weekday-list sortable"></ul>
-    </div>
-    <div className="weekday">
-      <h1>Sunday, 29</h1>
-      <i className="far fa-copy"></i>
-      <ul className="weekday-list sortable"></ul>
-    </div>
-  </div>
-</section>
-
-)
+  </section>
+);
 
 export default Weeks;
