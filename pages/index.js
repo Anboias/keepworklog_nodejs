@@ -16,6 +16,8 @@ import fire from '../utils/fire';
 import Login from '../components/Login';
 import authenticate from '../firebase/authenticate';
 
+import data from '../data';
+
 export default function Home() {
   const {
     email,
@@ -69,8 +71,8 @@ export default function Home() {
         <main>
           <Worklog />
           <Todonew />
-          <Weeks />
-          <Todolist />
+          <Weeks data={data} />
+          <Todolist data={data} />
           <Footer />
         </main>
       </div>

@@ -1,10 +1,11 @@
 import Reaact, { Fragment, useState, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-
 import ITEM_TYPE from '../data/types';
 
-const TodolistElement = () => {
-  const isDone = false;
+const TodolistElement = ({ todo }) => {
+  const isDone = todo.status === 'done' ? true : false;
+
+  // alert('todo --- ', JSON.stringify(todo));
 
   return (
     <li className="draggable movable-item item">
@@ -23,7 +24,7 @@ const TodolistElement = () => {
           </>
         )}
 
-        <p>TEEEEEEST</p>
+        <p>{todo.content}</p>
       </div>
     </li>
   );

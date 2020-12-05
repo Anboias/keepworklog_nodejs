@@ -1,41 +1,21 @@
 import Weekday from './Weekday';
 
-const Weeks = () => (
+const Weeks = ({ data }) => (
   <section id="weeks">
     <div className="container">
-      <Weekday
-        day="Monday, 23"
-        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
-                eligendi fugiat."
-      />
+      <Weekday day="Monday, 23" data={data} />
 
-      <Weekday
-        day="Tuesday, 24"
-        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
-                eligendi fugiat."
-      />
+      <Weekday day="Tuesday, 24" data={data} />
 
-      <Weekday
-        day="Wednesday, 25"
-        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
-                eligendi fugiat."
-      />
+      <Weekday day="Wednesday, 25" data={data} />
 
-      <Weekday
-        day="Thursday, 26"
-        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
-                eligendi fugiat."
-      />
+      <Weekday day="Thursday, 26" data={data} />
 
-      <Weekday
-        day="Friday, 27"
-        content="Lorem ipsum dolor sit amet consectetur adipisicing elit Suscipit
-                eligendi fugiat."
-      />
+      <Weekday day="Friday, 27" data={data} />
 
-      <Weekday day="Saturday, 28" content={null} />
+      <Weekday day="Saturday, 28" data={data} />
 
-      <Weekday day="Sunday, 29" content={null} />
+      <Weekday day="Sunday, 29" data={data} />
     </div>
   </section>
 );

@@ -1,32 +1,42 @@
-const Worklog = () => (
-  <section id="worklog">
-    <div className="container">
-      <p>Worklog 2020</p>
-      <label htmlFor="allweeks"></label>
-      <select id="allweeks" name="allweeks">
-        <option value="47">Week 47 : 16 Nov - 22 Nov</option>
-        <option value="48">Week 48 : 23 Nov - 29 Nov</option>
-        <option value="49">Week 49 : 30 Nov - 06 Dec</option>
-        <option value="50">Week 50 : 07 Dec - 13 Dec</option>
-        <option value="51">Week 51 : 14 Dec - 20 Dec</option>
-        <option value="47">Week 47 : 16 Nov - 22 Nov</option>
-        <option value="48">Week 48 : 23 Nov - 29 Nov</option>
-        <option value="49">Week 49 : 30 Nov - 06 Dec</option>
-        <option value="50">Week 50 : 07 Dec - 13 Dec</option>
-        <option value="51">Week 51 : 14 Dec - 20 Dec</option>
-        <option value="47">Week 47 : 16 Nov - 22 Nov</option>
-        <option value="48">Week 48 : 23 Nov - 29 Nov</option>
-        <option value="49">Week 49 : 30 Nov - 06 Dec</option>
-        <option value="50">Week 50 : 07 Dec - 13 Dec</option>
-        <option value="51">Week 51 : 14 Dec - 20 Dec</option>
-        <option value="47">Week 47 : 16 Nov - 22 Nov</option>
-        <option value="48">Week 48 : 23 Nov - 29 Nov</option>
-        <option value="49">Week 49 : 30 Nov - 06 Dec</option>
-        <option value="50">Week 50 : 07 Dec - 13 Dec</option>
-        <option value="51">Week 51 : 14 Dec - 20 Dec</option>
-      </select>
-    </div>
-  </section>
-);
+import React, { useState } from 'react';
+import Weeks from './Weeks';
+import WeeksOf2021 from '../data/weeksOf2021';
+import Calendar from 'react-calendar';
+import getDateRangeOfWeek from '../utils/getDateRangeOfWeek';
+
+const Worklog = () => {
+  // const [weeks2021, setWeek] = useState(WeeksOf2021);
+
+  // const Week = weeks.map((Week) => Week);
+  // const handleWeekChange = (e) => console.log(week[e.target.value]);
+
+  const [value, onChange] = useState(new Date());
+
+  return (
+    <section id="worklog">
+      <div className="container">
+        <p>Worklog 2021</p>
+        <span>{JSON.stringify(getDateRangeOfWeek(49, 2020))}</span>
+        {/* (weekNumber, date, event) => alert('Clicked week: ', weekNumber, 'that starts on: ', date) */}
+        {/* 
+        <Calendar
+          onChange={onChange}
+          value={value}
+          calendarType="Arabic"
+          onClickWeekNumber={(2, '01012020', null)}
+        /> */}
+        {/* <select
+          id="allweeks"
+          name="allweeks"
+          onChange={(e) => handleWeekChange(e)}
+        >
+          {Week.map((week, key) => (
+            <option value={key}>{week}</option>
+          ))}
+        </select> */}
+      </div>
+    </section>
+  );
+};
 
 export default Worklog;

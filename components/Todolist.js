@@ -4,18 +4,16 @@ import ITEM_TYPE from '../data/types';
 
 import TodolistElement from './TodolistElement';
 
-const Todolist = () => {
+const Todolist = ({ data }) => {
   return (
     <section id="todolist">
       <div className="container">
         <ul className="todo-list sortable">
-          <TodolistElement />
-          <TodolistElement />
-          <TodolistElement />
-          <TodolistElement />
-          <TodolistElement />
-          <TodolistElement />
-          <TodolistElement />
+          {data
+            .filter((all) => all.status === 'open')
+            .map((todo) => {
+              return <TodolistElement todo={todo} />;
+            })}
         </ul>
       </div>
     </section>

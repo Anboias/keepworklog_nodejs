@@ -41,6 +41,18 @@ const data = [
     date: '20201204',
     content: 'Finish reading Intro to UI/UX',
   },
+  {
+    id: 8,
+    status: 'done',
+    date: '20201204',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 9,
+    status: 'done',
+    date: '20201204',
+    content: 'Finish reading Intro to UI/UX',
+  },
 ];
 
-export { data };
+export default data;
