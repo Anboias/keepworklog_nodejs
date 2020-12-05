@@ -5,28 +5,28 @@ import getDateRangeOfWeek, {
 } from '../utils/getDateRangeOfWeek';
 
 const Worklog = () => {
-  const [weeks, setWeek] = useState(new Date());
+  const [currentWeekNo, setCurrentWeekNo] = useState(0);
+
+  let year = 2021;
+  const allWeeksFromYear = getWeekNumbers(year);
+
+  console.log(currentWeekNo);
 
   // const Week = weeks.map((Week) => Week);
   const handleWeekChange = (e) => {
-    console.log(e.target.value.day);
-    return 'wtfff';
-    // return e.target.value.day;
+    setCurrentWeekNo(e.target.value);
   };
-
-  let year = 2020;
-  const allWeeksFromYear = getWeekNumbers(year);
-
-  // const [value, onChange] = useState(new Date());
-
-  // const thisWeek = getDateRangeOfWeek(52, 2020);
 
   return (
     <section id="worklog">
       <div className="container">
-        <p>Worklog 2020</p>
+        <p>Worklog 2020 | {currentWeekNo}</p>
         <span>
-          <select>
+          <select
+            id="allweeks"
+            name="allweeks"
+            onChange={(e) => handleWeekChange(e)}
+          >
             Week{' '}
             {allWeeksFromYear.map((week, index) => {
               return (

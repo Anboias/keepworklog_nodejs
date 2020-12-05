@@ -44,6 +44,12 @@ export const getWeekNumbers = (year) => {
 
   for (let i = 0; i < 60; i++) {
     current[i] = getDateRangeOfWeek(i + 1, year);
+    console.log(
+      'parseInt: ',
+      parseInt(current[i][0].year),
+      ' ----  year+1: ',
+      year + 1
+    );
     if (parseInt(current[i][0].year) === year + 1) {
       current[i].pop();
       break;
