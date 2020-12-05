@@ -1,39 +1,53 @@
 import React, { useState } from 'react';
 import Weeks from './Weeks';
-import WeeksOf2021 from '../data/weeksOf2021';
-import Calendar from 'react-calendar';
-import getDateRangeOfWeek from '../utils/getDateRangeOfWeek';
+import getDateRangeOfWeek, {
+  getWeekNumbers,
+} from '../utils/getDateRangeOfWeek';
 
 const Worklog = () => {
-  // const [weeks2021, setWeek] = useState(WeeksOf2021);
+  const [weeks, setWeek] = useState(new Date());
 
   // const Week = weeks.map((Week) => Week);
-  // const handleWeekChange = (e) => console.log(week[e.target.value]);
+  const handleWeekChange = (e) => {
+    console.log(e.target.value.day);
+    return 'wtfff';
+    // return e.target.value.day;
+  };
 
-  const [value, onChange] = useState(new Date());
+  let year = 2020;
+  const allWeeksFromYear = getWeekNumbers(year);
+
+  // const [value, onChange] = useState(new Date());
+
+  // const thisWeek = getDateRangeOfWeek(52, 2020);
 
   return (
     <section id="worklog">
       <div className="container">
-        <p>Worklog 2021</p>
-        <span>{JSON.stringify(getDateRangeOfWeek(49, 2020))}</span>
-        {/* (weekNumber, date, event) => alert('Clicked week: ', weekNumber, 'that starts on: ', date) */}
-        {/* 
-        <Calendar
-          onChange={onChange}
-          value={value}
-          calendarType="Arabic"
-          onClickWeekNumber={(2, '01012020', null)}
-        /> */}
+        <p>Worklog 2020</p>
+        <span>
+          <select>
+            Week{' '}
+            {allWeeksFromYear.map((week, index) => {
+              return (
+                <option value={index + 1}>
+                  Week {String(index + 1).padStart(2, '0')} : {week[0].day}.
+                  {week[0].month} - {week[week.length - 1].day}.
+                  {week[week.length - 1].month}
+                </option>
+              );
+            })}
+          </select>
+        </span>
         {/* <select
           id="allweeks"
           name="allweeks"
           onChange={(e) => handleWeekChange(e)}
-        >
-          {Week.map((week, key) => (
-            <option value={key}>{week}</option>
-          ))}
-        </select> */}
+        > */}
+        {/* {thisWeek.map((currentWeek) => (
+            <option value={currentWeek.date}>{currentWeek.day}</option>
+          ))} */}
+        {/* </select> */}
       </div>
     </section>
   );

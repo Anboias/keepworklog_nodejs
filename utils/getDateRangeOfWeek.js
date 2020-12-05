@@ -29,13 +29,29 @@ const getDateRangeOfWeek = (weekNo, y) => {
 
   for (var i = 0; i < 7; i++) {
     day.setDate(day.getDate() + 1);
-    days.push(
-      day.getMonth() + 1 + '-' + day.getDate() + '-' + day.getFullYear()
-    );
+    days.push({
+      day: String(day.getDate()).padStart(2, '0'),
+      month: String(day.getMonth() + 1).padStart(2, '0'),
+      year: day.getFullYear(),
+    });
   }
+
   return days;
 };
 
-export default getDateRangeOfWeek;
+export const getWeekNumbers = (year) => {
+  let current = [];
 
+  for (let i = 0; i < 60; i++) {
+    current[i] = getDateRangeOfWeek(i + 1, year);
+    if (parseInt(current[i][0].year) === year + 1) {
+      current[i].pop();
+      break;
+    }
+  }
+
+  return current;
+};
+
+export default getDateRangeOfWeek;
 // console.log(getDateRangeOfWeek(49, 2020)); //12-21-2015 to 12-27-2015
