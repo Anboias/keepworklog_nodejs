@@ -18,6 +18,11 @@ import authenticate from '../firebase/authenticate';
 
 import data from '../data';
 
+// Worklog container
+import getDateRangeOfWeek, {
+  getWeekNumbers,
+} from '../utils/getDateRangeOfWeek';
+
 export default function Home() {
   const {
     email,
@@ -33,6 +38,16 @@ export default function Home() {
     passwordError,
     user,
   } = authenticate();
+
+  // Worklog container
+  const [currentWeekNo, setCurrentWeekNo] = useState(0);
+
+  let year = 2022;
+  const allWeeksFromYear = getWeekNumbers(year);
+  // const Week = weeks.map((Week) => Week);
+  const handleWeekChange = (e) => {
+    setCurrentWeekNo(e.target.value);
+  };
 
   return !user ? (
     <Login
@@ -69,9 +84,17 @@ export default function Home() {
       <div>
         <Navbar handleLogout={handleLogout} />
         <main>
-          <Worklog />
+          <Worklog
+            currentWeekNo={currentWeekNo}
+            setCurrentWeekNo={setCurrentWeekNo}
+            getWeekNumbers={getWeekNumbers}
+            handleWeekChange={handleWeekChange}
+            allWeeksFromYear={allWeeksFromYear}
+            getDateRangeOfWeek={getDateRangeOfWeek}
+            year={year}
+          />
           <Todonew />
-          <Weeks data={data} />
+          <Weeks data={data} currentWeekNo={currentWeekNo} year={year} />
           <Todolist data={data} />
           <Footer />
         </main>

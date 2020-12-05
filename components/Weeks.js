@@ -1,8 +1,16 @@
 import Weekday from './Weekday';
+// Worklog container
+import getDateRangeOfWeek, {
+  getWeekNumbers,
+} from '../utils/getDateRangeOfWeek';
 
-const Weeks = ({ data }) => (
+const Weeks = ({ data, currentWeekNo, year }) => (
   <section id="weeks">
     <div className="container">
+      <h1>
+        {currentWeekNo} --{' '}
+        {JSON.stringify(getDateRangeOfWeek(currentWeekNo, year))}
+      </h1>
       <Weekday day="Monday, 23" data={data} />
 
       <Weekday day="Tuesday, 24" data={data} />
