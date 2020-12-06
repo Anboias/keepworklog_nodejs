@@ -4,28 +4,22 @@ import getDateRangeOfWeek, {
   getWeekNumbers,
 } from '../utils/getDateRangeOfWeek';
 
-const Weeks = ({ data, currentWeekNo, year }) => (
-  <section id="weeks">
-    <div className="container">
-      <h1>
-        {currentWeekNo} --{' '}
-        {JSON.stringify(getDateRangeOfWeek(currentWeekNo, year))}
-      </h1>
-      <Weekday day="Monday, 23" data={data} />
+const Weeks = ({ data, currentWeekNo, year }) => {
+  let currentWeek = getDateRangeOfWeek(currentWeekNo, year);
 
-      <Weekday day="Tuesday, 24" data={data} />
-
-      <Weekday day="Wednesday, 25" data={data} />
-
-      <Weekday day="Thursday, 26" data={data} />
-
-      <Weekday day="Friday, 27" data={data} />
-
-      <Weekday day="Saturday, 28" data={data} />
-
-      <Weekday day="Sunday, 29" data={data} />
-    </div>
-  </section>
-);
+  return (
+    <section id="weeks">
+      <div className="container">
+        <Weekday day="Monday" currentWeek={currentWeek[0]} />
+        <Weekday day="Tuesday" currentWeek={currentWeek[1]} />
+        <Weekday day="Wednesday" currentWeek={currentWeek[2]} />
+        <Weekday day="Thursday" currentWeek={currentWeek[3]} />
+        <Weekday day="Friday" currentWeek={currentWeek[4]} />
+        <Weekday day="Saturday" currentWeek={currentWeek[5]} />
+        <Weekday day="Sunday" currentWeek={currentWeek[6]} />
+      </div>
+    </section>
+  );
+};
 
 export default Weeks;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import getMonthName from '../utils/getMonthName';
 
 const Worklog = ({
   currentWeekNo,
@@ -11,7 +12,7 @@ const Worklog = ({
   return (
     <section id="worklog">
       <div className="container">
-        <p>Worklog {year}</p>
+        <p>Worklog 2021</p>
         <span>
           <select
             id="allweeks"
@@ -22,9 +23,11 @@ const Worklog = ({
             {allWeeksFromYear.map((week, index) => {
               return (
                 <option value={index + 1}>
-                  Week {String(index + 1).padStart(2, '0')} : {week[0].day}.
-                  {week[0].month}.{week[0].year} - {week[week.length - 1].day}.
-                  {week[week.length - 1].month}.{week[week.length - 1].year}
+                  Week {String(index + 1).padStart(2, '0')} :{' '}
+                  {week[0].day + ' ' + getMonthName(week[0].month)} -{' '}
+                  {week[week.length - 1].day +
+                    ' ' +
+                    getMonthName(week[week.length - 1].month)}
                 </option>
               );
             })}

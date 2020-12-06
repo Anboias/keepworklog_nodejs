@@ -53,6 +53,66 @@ const data = [
     date: '20201204',
     content: 'Finish reading Intro to UI/UX',
   },
+  {
+    id: 10,
+    status: 'done',
+    date: '20210104',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 11,
+    status: 'done',
+    date: '20210105',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 12,
+    status: 'done',
+    date: '20210107',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 13,
+    status: 'done',
+    date: '20210104',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 14,
+    status: 'done',
+    date: '20210112',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 15,
+    status: 'done',
+    date: '20210115',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 16,
+    status: 'done',
+    date: '20210104',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 17,
+    status: 'done',
+    date: '20210104',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 18,
+    status: 'done',
+    date: '20210104',
+    content: 'Finish reading Intro to UI/UX',
+  },
+  {
+    id: 19,
+    status: 'done',
+    date: '20210104',
+    content: 'Finish reading Intro to UI/UX',
+  },
 ];
 
 export default data;
