@@ -13,13 +13,13 @@ const data = [
   },
   {
     id: 3,
-    status: 'open',
+    status: 'done',
     date: '20201204',
     content: 'Call the bank to talk about investments',
   },
   {
     id: 4,
-    status: 'open',
+    status: 'done',
     date: '20201204',
     content: 'Finish reading Intro to UI/UX',
   },

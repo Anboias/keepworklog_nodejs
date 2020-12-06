@@ -1,7 +1,46 @@
+import Reaact, { useState, useEffect } from 'react';
+import data from '../data';
+
 const Todonew = () => {
-  const handleClick = (e) => {
-    e.preventDefault();
+  const [todos, setTodos] = useState(null);
+  const [value, setValue] = useState('');
+  const [userId, setUserId] = useState(0);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    setTodos(updateTodoList());
+  }, [userId]);
+
+  // useEffect(() => {
+  //   fetch('../data', {
+  //     method: 'PUT'
+  //   })
+  //     .then((res) => res.json())
+  //     .then((videos) => videos.filter((video) => {
+  //       return video.id === videoID;
+  //     }))
+  //     .then((matched) => setVideo(matched[0]));
+  // }, []);
+
+  const updateTodoList = () => {
+    // alert('oook');
+    return data.filter((todoEL) => todoEL.status === 'open');
   };
+
+  const handleClick = (e) => {
+    let newTodo = {};
+    newTodo.id = '20';
+    newTodo.status = 'open';
+    newTodo.date = '20210104';
+    newTodo.content = value;
+
+    setTodos([...todos, newTodo]);
+    setValue('');
+    e.preventDefault();
+
+    // setTodos(oldTodos => [...oldTodos, e.target.value]);
+  };
+
   return (
     <section id="todonew">
       <div className="container">
@@ -9,7 +48,10 @@ const Todonew = () => {
           <button onClick={handleClick}>
             <i className="fas fa-plus-circle fa-3x"></i>
           </button>
+          {/* <h1>DATA {JSON.stringify(data}</h1> */}
           <input
+            onChange={(e) => setValue(e.target.value)}
+            value={value}
             type="text"
             id="fname"
             name="fname"
@@ -18,6 +60,8 @@ const Todonew = () => {
           />
           <br />
         </form>
+        {/* <p>WTF {JSON.stringify(todos)}</p> */}
+        {/* <p>WTF {value}</p> */}
       </div>
     </section>
   );
