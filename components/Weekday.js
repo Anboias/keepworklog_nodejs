@@ -1,10 +1,9 @@
 import TodolistElement from './TodolistElement';
 import data from '../data';
 
-const WeeksElement = ({ day, currentWeek }) => {
+const Weekday = ({ day, currentWeek }) => {
   let currentDate = currentWeek.year + currentWeek.month + currentWeek.day;
-
-  console.log(currentDate);
+  console.log('inside ', currentWeek);
 
   return (
     <div className="weekday">
@@ -24,4 +23,4 @@ const WeeksElement = ({ day, currentWeek }) => {
   );
 };
 
-export default WeeksElement;
+export default Weekday;

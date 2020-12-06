@@ -8,7 +8,7 @@ const TodolistElement = ({ todo }) => {
   // alert('todo --- ', JSON.stringify(todo));
 
   return (
-    <li className="draggable movable-item item">
+    <li key={todo.id} className="draggable movable-item item">
       <div className={`todo-container ${isDone && 'todo-done'}`}>
         {isDone ? (
           <i className="fas fa-check-circle"></i>

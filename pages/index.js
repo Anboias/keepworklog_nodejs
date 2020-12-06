@@ -40,7 +40,7 @@ export default function Home() {
   } = authenticate();
 
   // Worklog container
-  const [currentWeekNo, setCurrentWeekNo] = useState(0);
+  const [currentWeekNo, setCurrentWeekNo] = useState(1);
 
   let year = 2022;
   const allWeeksFromYear = getWeekNumbers(year);
