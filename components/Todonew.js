@@ -1,4 +1,7 @@
-import Reaact, { useState, useEffect } from 'react';
+import Reaact, {
+  useState,
+  useEffect
+} from 'react';
 import data from '../data';
 
 const Todonew = () => {
@@ -41,30 +44,44 @@ const Todonew = () => {
     // setTodos(oldTodos => [...oldTodos, e.target.value]);
   };
 
-  return (
-    <section id="todonew">
-      <div className="container">
-        <form autoComplete="off">
-          <button onClick={handleClick}>
-            <i className="fas fa-plus-circle fa-3x"></i>
-          </button>
-          {/* <h1>DATA {JSON.stringify(data}</h1> */}
-          <input
-            onChange={(e) => setValue(e.target.value)}
-            value={value}
-            type="text"
-            id="fname"
-            name="fname"
-            placeholder="Add a new task. Keep it simple. Around 150 chars should be enough."
-            maxLength="150"
-          />
-          <br />
-        </form>
-        {/* <p>WTF {JSON.stringify(todos)}</p> */}
-        {/* <p>WTF {value}</p> */}
-      </div>
-    </section>
-  );
+  return ( <
+      section id = "todonew" >
+      <
+      div className = "container" >
+      <
+      form autoComplete = "off" >
+      <
+      button onClick = {
+        handleClick
+      } >
+      <
+      i className = "fas fa-plus-circle fa-3x" > < /i> < /
+      button > {
+        /* <h1>DATA {JSON.stringify(data}</h1> */
+      } <
+      input onChange = {
+        (e) => setValue(e.target.value)
+      }
+      value = {
+        value
+      }
+      type = "text"
+      id = "fname"
+      name = "fname"
+      placeholder = "Add a new task. Keep it simple. Around 150 chars should be enough."
+      maxLength = "150" /
+      >
+      <
+      br / >
+      <
+      /form> {
+      /* <p>WTF {JSON.stringify(todos)}</p> */
+    } {
+      /* <p>WTF {value}</p> */
+    } <
+    /div> < /
+    section >
+);
 };
 
 export default Todonew;

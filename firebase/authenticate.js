@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect
+} from 'react';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import fire from '../utils/fire';
+import fire from './firebaseConfig';
 
 const authenticate = () => {
   const [user, setUser] = useState('');
