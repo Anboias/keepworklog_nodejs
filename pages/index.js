@@ -19,6 +19,8 @@ import getDateRangeOfWeek, {
 import { useRequireAuth } from '../firebase/useRequireAuth';
 import { useRouter } from 'next/router';
 
+// import fetchTodoElements from '../data/getData';
+
 export default function Home() {
   // Worklog container
   const [currentWeekNo, setCurrentWeekNo] = useState(1);
@@ -31,41 +33,38 @@ export default function Home() {
     setCurrentWeekNo(e.target.value);
   };
 
-  const handleLogout = () => {};
-
   const auth = useRequireAuth();
 
   console.log('auth.user: ', auth.user);
 
-  useEffect(()=>{
-    fetchTodoElements();
-},[])
-  
-const fetchTodoElements = async () => {
-  console.log('INSIDE index.js START: ')
+  useEffect(() => {
+    // setTodos(fetchTodoElements('done'));
+    // console.log('TODOSSSSSS: ', todos);
+    fetchTodoElementsLocal();
+  }, []);
 
-  const allTodos = [];
-  db
-  .collection('todos')
-  .doc('8ltzk8ewXbP3toQ4EVwH2PEPVQl2')
-  .collection('todolist')
-  .get()
-      .then(snapshot => {
-          snapshot.docs.forEach(todo => {
-              console.log('INSIDE index.js: '. snapshot)
-              let currentID = todo.id
-              let appObj = { ...todo.data(), ['id']: currentID }
-              allTodos.push(appObj)
+  const fetchTodoElementsLocal = async () => {
+    console.log('INSIDE index.js START: ');
+
+    const allTodos = [];
+    db.collection('todos')
+      .doc(auth.user.uid)
+      .collection('todolist')
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((todo) => {
+          console.log('INSIDE index.js: '.snapshot);
+          let currentID = todo.id;
+          let appObj = { ...todo.data(), ['id']: currentID };
+          allTodos.push(appObj);
+        });
+        setTodos(allTodos);
       })
-      setTodos(allTodos)
-  })
-  .catch(error => {
-    console.log('Inside index.js USeEffectErrro: ', error)
-
-  })
-  console.log('INSIDE index.js END: ')
-
-};
+      .catch((error) => {
+        console.log('Inside index.js USeEffectErrro: ', error);
+      });
+    console.log('INSIDE index.js END: ');
+  };
 
   return (
     <>
@@ -89,9 +88,14 @@ const fetchTodoElements = async () => {
             getDateRangeOfWeek={getDateRangeOfWeek}
             year={year}
           />{' '}
-          <Todonew todos={todos} setTodos={setTodos}/>
-          <Weeks data={data} currentWeekNo={currentWeekNo} year={year} />{' '}
-          <Todolist todos={todos} /> 
+          <Todonew todos={todos} setTodos={setTodos} />
+          <Weeks
+            todos={todos}
+            data={data}
+            currentWeekNo={currentWeekNo}
+            year={year}
+          />{' '}
+          <Todolist todos={todos} />
           <Footer />
         </main>{' '}
       </div>{' '}

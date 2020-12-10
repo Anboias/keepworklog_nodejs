@@ -3,7 +3,7 @@ import data from '../data';
 import { useAuth } from '../firebase/useAuth';
 import { db } from '../firebase/firebaseConfig';
 
-const Todonew = ({todos, setTodos}) => {
+const Todonew = ({ todos, setTodos }) => {
   const [value, setValue] = useState('');
   const [userId, setUserId] = useState(0);
 
@@ -17,10 +17,11 @@ const Todonew = ({todos, setTodos}) => {
   const addNewTodoElement = async (newTodo) => {
     try {
       await db
-      .collection('todos')
-      .doc(auth.user.uid)
-      .collection('todolist').doc('5')
-      .set(newTodo);
+        .collection('todos')
+        .doc(auth.user.uid)
+        .collection('todolist')
+        .doc('5')
+        .set(newTodo);
       console.log('Success. New todo added');
     } catch (error) {
       console.log(error);

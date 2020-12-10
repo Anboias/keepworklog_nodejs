@@ -1,7 +1,7 @@
 import TodolistElement from './TodolistElement';
 import data from '../data';
 
-const Weekday = ({ day, currentWeek }) => {
+const Weekday = ({ day, currentWeek, todos }) => {
   let currentDate = currentWeek.year + currentWeek.month + currentWeek.day;
   // console.log('inside ', currentWeek);
 
@@ -12,7 +12,7 @@ const Weekday = ({ day, currentWeek }) => {
 
       <ul className="weekday-list sortable">
         <>
-          {data
+          {todos
             .filter((all) => all.status === 'done' && all.date === currentDate)
             .map((todo, index) => {
               return <TodolistElement key={index} todo={todo} />;
