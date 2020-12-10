@@ -8,9 +8,7 @@ import Todolist from '../components/Todolist';
 import Footer from '../components/Footer';
 
 import 'firebase/auth';
-
-import Login from '../components/Login';
-
+import { db } from '../firebase/firebaseConfig';
 import data from '../data';
 
 // Worklog container
@@ -18,14 +16,13 @@ import getDateRangeOfWeek, {
   getWeekNumbers,
 } from '../utils/getDateRangeOfWeek';
 
-import { signOut } from '../firebase/useAuth';
 import { useRequireAuth } from '../firebase/useRequireAuth';
 import { useRouter } from 'next/router';
 
 export default function Home() {
   // Worklog container
   const [currentWeekNo, setCurrentWeekNo] = useState(1);
-  const router = useRouter();
+  const [todos, setTodos] = useState([]);
 
   let year = 2022;
   const allWeeksFromYear = getWeekNumbers(year);
@@ -35,17 +32,40 @@ export default function Home() {
   };
 
   const handleLogout = () => {};
+
   const auth = useRequireAuth();
 
   console.log('auth.user: ', auth.user);
-  // const useUser = () => ({ user: auth.user, loading: false });
-  // const { user, loading } = useUser();
 
-  // useEffect(() => {
-  //   if (!(auth.user)) {
-  //     router.push('/login');
-  //   }
-  // }, [user, loading]);
+  useEffect(()=>{
+    fetchTodoElements();
+},[])
+  
+const fetchTodoElements = async () => {
+  console.log('INSIDE index.js START: ')
+
+  const allTodos = [];
+  db
+  .collection('todos')
+  .doc('8ltzk8ewXbP3toQ4EVwH2PEPVQl2')
+  .collection('todolist')
+  .get()
+      .then(snapshot => {
+          snapshot.docs.forEach(todo => {
+              console.log('INSIDE index.js: '. snapshot)
+              let currentID = todo.id
+              let appObj = { ...todo.data(), ['id']: currentID }
+              allTodos.push(appObj)
+      })
+      setTodos(allTodos)
+  })
+  .catch(error => {
+    console.log('Inside index.js USeEffectErrro: ', error)
+
+  })
+  console.log('INSIDE index.js END: ')
+
+};
 
   return (
     <>
@@ -69,9 +89,10 @@ export default function Home() {
             getDateRangeOfWeek={getDateRangeOfWeek}
             year={year}
           />{' '}
-          <Todonew />
+          <Todonew todos={todos} setTodos={setTodos}/>
           <Weeks data={data} currentWeekNo={currentWeekNo} year={year} />{' '}
-          <Todolist data={data} /> <Footer />
+          <Todolist todos={todos} /> 
+          <Footer />
         </main>{' '}
       </div>{' '}
     </>
