@@ -3,7 +3,7 @@ import data from '../data';
 
 const Weekday = ({ day, currentWeek }) => {
   let currentDate = currentWeek.year + currentWeek.month + currentWeek.day;
-  console.log('inside ', currentWeek);
+  // console.log('inside ', currentWeek);
 
   return (
     <div className="weekday">
@@ -14,8 +14,8 @@ const Weekday = ({ day, currentWeek }) => {
         <>
           {data
             .filter((all) => all.status === 'done' && all.date === currentDate)
-            .map((todo) => {
-              return <TodolistElement todo={todo} />;
+            .map((todo, index) => {
+              return <TodolistElement key={index} todo={todo} />;
             })}
         </>
       </ul>

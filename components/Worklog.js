@@ -22,7 +22,7 @@ const Worklog = ({
             Week{' '}
             {allWeeksFromYear.map((week, index) => {
               return (
-                <option value={index + 1}>
+                <option key={index} value={index + 1}>
                   Week {String(index + 1).padStart(2, '0')} :{' '}
                   {week[0].day + ' ' + getMonthName(week[0].month)} -{' '}
                   {week[week.length - 1].day +

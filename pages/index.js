@@ -7,8 +7,6 @@ import Weeks from '../components/Weeks';
 import Todolist from '../components/Todolist';
 import Footer from '../components/Footer';
 
-// import { useAuth } from '../utils/old/auth';
-
 import 'firebase/auth';
 
 import Login from '../components/Login';
@@ -39,17 +37,17 @@ export default function Home() {
   const handleLogout = () => {};
   const auth = useRequireAuth();
 
-  const useUser = () => ({ user: auth.user, loading: false });
+  console.log('auth.user: ', auth.user);
+  // const useUser = () => ({ user: auth.user, loading: false });
+  // const { user, loading } = useUser();
 
-  const { user, loading } = useUser();
+  // useEffect(() => {
+  //   if (!(auth.user)) {
+  //     router.push('/login');
+  //   }
+  // }, [user, loading]);
 
-  useEffect(() => {
-    if (!(user || loading)) {
-      router.push('/login');
-    }
-  }, [user, loading]);
-
-  return !user ? null : (
+  return (
     <>
       <Head>
         <title> Keep Worklog </title> <link rel="icon" href="/favicon.ico" />{' '}
