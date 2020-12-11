@@ -1,41 +1,25 @@
 import { useForm } from 'react-hook-form';
 import { auth, db } from '../firebase/firebaseConfig';
 import Button from './Button';
+import { useAuth } from '../firebase/useAuth';
 
 const SignUpForm = () => {
   // Needs to be replaced with real value
   const isLoading = false;
 
-  const { register, errors, handleSubmit } = useForm();
+  const auth = useAuth();
 
-  const signUp = async ({ name, email, password }) => {
-    try {
-      const response = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      return createUser({ uid: response.user.uid, email, name });
-    } catch (error) {
-      return { error };
-    }
-  };
+  const { signUp } = auth;
+
+  const { register, errors, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     const user = await signUp(data);
     console.log(user);
   };
 
-  const createUser = async (user) => {
-    try {
-      await db.collection('users').doc(user.uid).set(user);
-      console.log('Success');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autocomplete="off">
       <div className="">
         <label htmlFor="name" className="">
           Name
@@ -45,6 +29,7 @@ const SignUpForm = () => {
           className=""
           type="text"
           name="name"
+          autocomplete="false"
           ref={register({ required: 'Please enter an name' })}
         />
         {errors.password && <div className="">{errors.password.message}</div>}
@@ -59,6 +44,7 @@ const SignUpForm = () => {
             className=""
             type="email"
             name="email"
+            autocomplete="false"
             ref={register({
               required: 'Please enter an email',
               pattern: {

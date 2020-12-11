@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 import { auth, db } from './firebaseConfig';
+import { v4 as uuidv4 } from 'uuid';
 
 const authContext = createContext({ user: {} });
 
@@ -20,9 +21,11 @@ export const useAuth = () => {
   return useContext(authContext);
 };
 
-// Provider hook that creates an auth object and handles it's state
+// Provider hook that creates an auth object and handles its state
 const useAuthProvider = () => {
   const [user, setUser] = useState(null);
+  const [testValue, setTestValue] = useState(1);
+
   const createUser = async (user) => {
     try {
       await db.collection('users').doc(user.uid).set(user);
@@ -32,6 +35,7 @@ const useAuthProvider = () => {
       return { error };
     }
   };
+
   const signUp = async ({ name, email, password }) => {
     try {
       const response = await auth.createUserWithEmailAndPassword(
@@ -74,22 +78,36 @@ const useAuthProvider = () => {
     }
   };
 
+  const addNewTodoElement = async (newTodo) => {
+    try {
+      await db
+        .collection('todos')
+        .doc(user.uid)
+        .collection('todolist')
+        .doc(uuidv4())
+        .set(newTodo);
+      console.log('Success. New todo added');
+    } catch (error) {
+      console.log('No success. No new todo added. Error: ' + error);
+    }
+  };
+
   useEffect(() => {
     const unsub = auth.onAuthStateChanged(handleAuthStateChanged);
 
     return () => unsub();
   }, []);
 
-  useEffect(() => {
-    if (user?.uid) {
-      // Subscribe to user document on mount
-      const unsubscribe = db
-        .collection('users')
-        .doc(user.uid)
-        .onSnapshot((doc) => setUser(doc.data()));
-      return () => unsubscribe();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (user?.uid) {
+  //     // Subscribe to user document on mount
+  //     const unsubscribe = db
+  //       .collection('users')
+  //       .doc(user.uid)
+  //       .onSnapshot((doc) => setUser(doc.data()));
+  //     return () => unsubscribe();
+  //   }
+  // }, []);
 
   const signOut = async () => {
     await auth.signOut();
@@ -108,5 +126,8 @@ const useAuthProvider = () => {
     getUserAdditionalData,
     signOut,
     sendPasswordResetEmail,
+    addNewTodoElement,
+    testValue,
+    setTestValue,
   };
 };

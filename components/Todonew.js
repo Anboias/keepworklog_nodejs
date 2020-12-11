@@ -9,31 +9,21 @@ const Todonew = ({ todos, setTodos }) => {
 
   const auth = useAuth();
 
+  const { addNewTodoElement, testValue, setTestValue } = auth;
+
   useEffect(() => {
     // Update the document title using the browser API
     // console.log('Auth: ', auth.user);
   }, [userId]);
 
-  const addNewTodoElement = async (newTodo) => {
-    try {
-      await db
-        .collection('todos')
-        .doc(auth.user.uid)
-        .collection('todolist')
-        .doc('5')
-        .set(newTodo);
-      console.log('Success. New todo added');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleClick = (e) => {
+    setTestValue(testValue + 1);
+
     let newTodo = {};
     newTodo.id = '20';
-    newTodo.status = 'open';
-    newTodo.date = '20210104';
-    newTodo.content = value;
+    newTodo.status = 'done';
+    newTodo.date = getCurrentDate();
+    newTodo.content = value + ' + ' + getCurrentDate() + ' + ' + testValue;
 
     setTodos([...todos, newTodo]);
     setValue('');
@@ -67,5 +57,16 @@ const Todonew = ({ todos, setTodos }) => {
     </section>
   );
 };
+
+export function getCurrentDate(separator = '') {
+  let newDate = new Date();
+  let date = newDate.getDate();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear() + 1;
+
+  return `${year}${separator}${
+    month < 10 ? `0${month}` : `${month}`
+  }${separator}${date}`;
+}
 
 export default Todonew;

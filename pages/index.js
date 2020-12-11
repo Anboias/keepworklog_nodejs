@@ -40,8 +40,10 @@ export default function Home() {
   useEffect(() => {
     // setTodos(fetchTodoElements('done'));
     // console.log('TODOSSSSSS: ', todos);
-    fetchTodoElementsLocal();
-  }, []);
+    if (auth.user) {
+      fetchTodoElementsLocal();
+    }
+  }, [auth.user]);
 
   const fetchTodoElementsLocal = async () => {
     console.log('INSIDE index.js START: ');
