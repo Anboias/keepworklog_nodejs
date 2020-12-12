@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import data from '../data';
 import { useAuth } from '../firebase/useAuth';
 import { db } from '../firebase/firebaseConfig';
+import { getCurrentDate } from '../utils/getCurrentDate';
 
 const Todonew = ({ todos, setTodos }) => {
   const [value, setValue] = useState('');
@@ -21,9 +22,12 @@ const Todonew = ({ todos, setTodos }) => {
 
     let newTodo = {};
     newTodo.id = '20';
-    newTodo.status = 'done';
-    newTodo.date = getCurrentDate();
-    newTodo.content = value + ' + ' + getCurrentDate() + ' + ' + testValue;
+    newTodo.status = value.includes('done') ? 'done' : 'open';
+    newTodo.date = value.includes('2021')
+      ? value.substring(value.indexOf('2021'), value.indexOf('2021') + 8)
+      : // : 'wtffff';
+        getCurrentDate();
+    newTodo.content = value + ' + ' + newTodo.date + ' + ' + testValue;
 
     setTodos([...todos, newTodo]);
     setValue('');
@@ -57,16 +61,5 @@ const Todonew = ({ todos, setTodos }) => {
     </section>
   );
 };
-
-export function getCurrentDate(separator = '') {
-  let newDate = new Date();
-  let date = newDate.getDate();
-  let month = newDate.getMonth() + 1;
-  let year = newDate.getFullYear() + 1;
-
-  return `${year}${separator}${
-    month < 10 ? `0${month}` : `${month}`
-  }${separator}${date}`;
-}
 
 export default Todonew;
