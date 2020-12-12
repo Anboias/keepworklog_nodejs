@@ -19,12 +19,11 @@ import getDateRangeOfWeek, {
 import { useRequireAuth } from '../firebase/useRequireAuth';
 import { useRouter } from 'next/router';
 
-// import fetchTodoElements from '../data/getData';
+// import { fetchTodoElements } from '../firebase/useAuth';
 
 export default function Home() {
   // Worklog container
   const [currentWeekNo, setCurrentWeekNo] = useState(1);
-  const [todos, setTodos] = useState([]);
 
   let year = 2022;
   const allWeeksFromYear = getWeekNumbers(year);
@@ -41,32 +40,33 @@ export default function Home() {
     // setTodos(fetchTodoElements('done'));
     // console.log('TODOSSSSSS: ', todos);
     if (auth.user) {
-      fetchTodoElementsLocal();
+      // fetchTodoElementsLocal();
+      auth.fetchTodoElements();
     }
   }, [auth.user]);
 
-  const fetchTodoElementsLocal = async () => {
-    console.log('INSIDE index.js START: ');
+  // const fetchTodoElementsLocal = async () => {
+  //   console.log('INSIDE index.js START: ');
 
-    const allTodos = [];
-    db.collection('todos')
-      .doc(auth.user.uid)
-      .collection('todolist')
-      .get()
-      .then((snapshot) => {
-        snapshot.docs.forEach((todo) => {
-          console.log('INSIDE index.js: '.snapshot);
-          let currentID = todo.id;
-          let appObj = { ...todo.data(), ['id']: currentID };
-          allTodos.push(appObj);
-        });
-        setTodos(allTodos);
-      })
-      .catch((error) => {
-        console.log('Inside index.js USeEffectErrro: ', error);
-      });
-    console.log('INSIDE index.js END: ');
-  };
+  //   const allTodos = [];
+  //   db.collection('todos')
+  //     .doc(auth.user.uid)
+  //     .collection('todolist')
+  //     .get()
+  //     .then((snapshot) => {
+  //       snapshot.docs.forEach((todo) => {
+  //         console.log('INSIDE index.js: '.snapshot);
+  //         let currentID = todo.id;
+  //         let appObj = { ...todo.data(), ['id']: currentID };
+  //         allTodos.push(appObj);
+  //       });
+  //       setTodos(allTodos);
+  //     })
+  //     .catch((error) => {
+  //       console.log('Inside index.js USeEffectErrro: ', error);
+  //     });
+  //   console.log('INSIDE index.js END: ');
+  // };
 
   return (
     <>
@@ -90,14 +90,9 @@ export default function Home() {
             getDateRangeOfWeek={getDateRangeOfWeek}
             year={year}
           />{' '}
-          <Todonew todos={todos} setTodos={setTodos} />
-          <Weeks
-            todos={todos}
-            data={data}
-            currentWeekNo={currentWeekNo}
-            year={year}
-          />{' '}
-          <Todolist todos={todos} />
+          <Todonew />
+          <Weeks data={data} currentWeekNo={currentWeekNo} year={year} />{' '}
+          <Todolist />
           <Footer />
         </main>{' '}
       </div>{' '}

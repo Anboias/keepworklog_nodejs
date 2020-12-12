@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import data from '../data';
-import { useAuth } from '../firebase/useAuth';
 import { db } from '../firebase/firebaseConfig';
 
 import TodolistElement from './TodolistElement';
 
+import { useAuth } from '../firebase/useAuth';
 
-const Todolist = ({todos }) => {
+const Todolist = () => {
+  const { todos, setTodos } = useAuth();
 
   return (
     <section id="todolist">
@@ -16,8 +17,7 @@ const Todolist = ({todos }) => {
             .filter((all) => all.status === 'open')
             .map((todo, index) => {
               return <TodolistElement key={index} todo={todo} />;
-            }) 
-          }
+            })}
         </ul>
       </div>
     </section>

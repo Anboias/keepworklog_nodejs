@@ -1,9 +1,11 @@
 import TodolistElement from './TodolistElement';
 import data from '../data';
+import { useAuth } from '../firebase/useAuth';
 
-const Weekday = ({ day, currentWeek, todos }) => {
+const Weekday = ({ day, currentWeek }) => {
   let currentDate = currentWeek.year + currentWeek.month + currentWeek.day;
   // console.log('inside ', currentWeek);
+  const { todos, setTodos } = useAuth();
 
   return (
     <div className="weekday">

@@ -25,6 +25,7 @@ export const useAuth = () => {
 const useAuthProvider = () => {
   const [user, setUser] = useState(null);
   const [testValue, setTestValue] = useState(1);
+  const [todos, setTodos] = useState([]);
 
   const createUser = async (user) => {
     try {
@@ -119,6 +120,29 @@ const useAuthProvider = () => {
     return response;
   };
 
+  const fetchTodoElements = async () => {
+    console.log('INSIDE index.js START: ');
+
+    const allTodos = [];
+    db.collection('todos')
+      .doc(user.uid)
+      .collection('todolist')
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((todo) => {
+          console.log('INSIDE index.js: '.snapshot);
+          let currentID = todo.id;
+          let appObj = { ...todo.data(), ['id']: currentID };
+          allTodos.push(appObj);
+        });
+        setTodos(allTodos);
+      })
+      .catch((error) => {
+        console.log('Inside index.js USeEffectErrro: ', error);
+      });
+    console.log('INSIDE index.js END: ');
+  };
+
   return {
     user,
     signUp,
@@ -129,5 +153,8 @@ const useAuthProvider = () => {
     addNewTodoElement,
     testValue,
     setTestValue,
+    fetchTodoElements,
+    todos,
+    setTodos,
   };
 };
