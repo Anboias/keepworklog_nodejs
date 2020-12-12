@@ -19,68 +19,67 @@ const SignUpForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} autocomplete="off">
-      <div className="">
-        <label htmlFor="name" className="">
-          Name
-        </label>
-        <input
-          id="name"
-          className=""
-          type="text"
-          name="name"
-          autocomplete="false"
-          ref={register({ required: 'Please enter an name' })}
-        />
-        {errors.password && <div className="">{errors.password.message}</div>}
-      </div>
-      <div className="">
-        <label htmlFor="email" className="">
-          Email address
-        </label>
-        <div className="">
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+      <div className="inputs-container">
+        <div>
+          <label htmlFor="name">Name</label>
           <input
-            id="email"
-            className=""
-            type="email"
-            name="email"
+            id="name"
+            type="text"
+            name="name"
             autocomplete="false"
-            ref={register({
-              required: 'Please enter an email',
-              pattern: {
-                // value: /^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/,
-                message: 'Not a valid email',
-              },
-            })}
+            ref={register({ required: 'Please enter an name' })}
           />
-          {errors.email && <div className="">{errors.email.message}</div>}
+          {errors.password && (
+            <div className="errors">{errors.password.message}</div>
+          )}
+        </div>
+        <div>
+          <label htmlFor="email">Email address</label>
+          <div>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              autocomplete="false"
+              ref={register({
+                required: 'Please enter an email',
+                pattern: {
+                  // value: /^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Not a valid email',
+                },
+              })}
+            />
+            {errors.email && (
+              <div className="errors">{errors.email.message}</div>
+            )}
+          </div>
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <div>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              ref={register({
+                required: 'Please enter a password',
+                minLength: {
+                  value: 6,
+                  message: 'Should have at least 6 characters',
+                },
+              })}
+            />
+            {errors.password && (
+              <div className="errors">{errors.password.message}</div>
+            )}
+          </div>
         </div>
       </div>
-      <div className="">
-        <label htmlFor="password" className="">
-          Password
-        </label>
-        <div className="">
-          <input
-            id="password"
-            className=""
-            type="password"
-            name="password"
-            ref={register({
-              required: 'Please enter a password',
-              minLength: {
-                value: 6,
-                message: 'Should have at least 6 characters',
-              },
-            })}
-          />
-          {errors.password && <div className="">{errors.password.message}</div>}
-        </div>
-      </div>
-      <div className="">
-        <span className="">
-          {/* <button type="submit" className="">Sign up </button> */}
-          <Button title="Sign up" type="submit" isLoading={isLoading} />
+      <div className="button-container">
+        <span>
+          <button type="submit">Sign up </button>
+          {/* <Button title="Sign up" type="submit" isLoading={isLoading} /> */}
         </span>
       </div>
     </form>
