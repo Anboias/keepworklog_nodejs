@@ -22,7 +22,7 @@ const Todonew = () => {
 
     let newTodo = {};
     newTodo.id = '20';
-    newTodo.status = value.includes('done') ? 'done' : 'open';
+    newTodo.isDone = value.includes('done') ? true : false;
     newTodo.date = value.includes('2021')
       ? value.substring(value.indexOf('2021'), value.indexOf('2021') + 8)
       : getCurrentDate();

@@ -15,7 +15,7 @@ const Weekday = ({ day, currentWeek }) => {
       <ul className="weekday-list sortable">
         <>
           {todos
-            .filter((all) => all.status === 'done' && all.date === currentDate)
+            .filter((all) => all.isDone === true && all.date === currentDate)
             .map((todo, index) => {
               return <TodolistElement key={index} todo={todo} />;
             })}

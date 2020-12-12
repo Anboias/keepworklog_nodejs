@@ -121,8 +121,6 @@ const useAuthProvider = () => {
   };
 
   const fetchTodoElements = async () => {
-    console.log('INSIDE index.js START: ');
-
     const allTodos = [];
     db.collection('todos')
       .doc(user.uid)
@@ -130,7 +128,6 @@ const useAuthProvider = () => {
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((todo) => {
-          console.log('INSIDE index.js: '.snapshot);
           let currentID = todo.id;
           let appObj = { ...todo.data(), ['id']: currentID };
           allTodos.push(appObj);
@@ -138,9 +135,9 @@ const useAuthProvider = () => {
         setTodos(allTodos);
       })
       .catch((error) => {
-        console.log('Inside index.js USeEffectErrro: ', error);
+        console.log('Error: ', error);
       });
-    console.log('INSIDE index.js END: ');
+    console.log('Success');
   };
 
   return {

@@ -14,7 +14,7 @@ const Todolist = () => {
       <div className="container">
         <ul className="todo-list sortable">
           {todos
-            .filter((all) => all.status === 'open')
+            .filter((all) => all.isDone === false)
             .map((todo, index) => {
               return <TodolistElement key={index} todo={todo} />;
             })}

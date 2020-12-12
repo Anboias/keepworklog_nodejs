@@ -34,8 +34,6 @@ export default function Home() {
 
   const auth = useRequireAuth();
 
-  console.log('auth.user: ', auth.user);
-
   useEffect(() => {
     // setTodos(fetchTodoElements('done'));
     // console.log('TODOSSSSSS: ', todos);
