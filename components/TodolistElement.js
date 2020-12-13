@@ -4,11 +4,21 @@ import { useDrag, useDrop } from 'react-dnd';
 import { useAuth } from '../firebase/useAuth';
 
 const TodolistElement = ({ todo }) => {
-  // const { toggleEvent }
+  let status = false;
+
+  const { updateTodo } = useAuth();
 
   const handleClick = (e) => {
-    console.log('Click event: ', e);
-    console.log('Todo: ', JSON.stringify(todo));
+    console.log('Not implemented.');
+  };
+
+  const handleSlide = (e) => {
+    status = !status;
+    const newTodo = { ...todo, isDone: status };
+
+    console.log('newTodo: ', newTodo);
+
+    updateTodo(newTodo);
   };
 
   return (
@@ -20,11 +30,11 @@ const TodolistElement = ({ todo }) => {
           <>
             <i className="fas fa-ellipsis-v"></i>
             <label className="switch">
-              <input type="checkbox" onClick={handleClick} />
+              <input type="checkbox" onClick={handleSlide} />
               <span className="slider round"></span>
             </label>
-            <i className="fas fa-trash-alt"></i>
-            <i className="fas fa-pencil-alt"></i>
+            <i className="fas fa-trash-alt" onClick={handleClick}></i>
+            <i className="fas fa-pencil-alt" onClick={handleClick}></i>
           </>
         )}
         <p>{todo.content}</p>

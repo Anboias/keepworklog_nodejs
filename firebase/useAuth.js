@@ -79,20 +79,6 @@ const useAuthProvider = () => {
     }
   };
 
-  const addNewTodoElement = async (newTodo) => {
-    try {
-      await db
-        .collection('todos')
-        .doc(user.uid)
-        .collection('todolist')
-        .doc(uuidv4())
-        .set(newTodo);
-      console.log('Success. New todo added');
-    } catch (error) {
-      console.log('No success. No new todo added. Error: ' + error);
-    }
-  };
-
   useEffect(() => {
     const unsub = auth.onAuthStateChanged(handleAuthStateChanged);
 
@@ -140,6 +126,38 @@ const useAuthProvider = () => {
     console.log('Success');
   };
 
+  const addTodoElement = async (newTodo) => {
+    try {
+      await db
+        .collection('todos')
+        .doc(user.uid)
+        .collection('todolist')
+        .doc(uuidv4())
+        .set(newTodo);
+      console.log('Success. New todo added');
+    } catch (error) {
+      console.log('Error on adding todo element: ' + error);
+    }
+  };
+
+  // Not working yet. Called from TodolistElement
+  const updateTodo = async (todo) => {
+    console.log('user.id: ', user.uid);
+    try {
+      await db
+        .collection('todos')
+        .doc(user.uid)
+        .collection('todolist')
+        .doc(todo.id)
+        .update({
+          content: todo.content,
+          isDone: todo.isDone,
+        });
+    } catch (error) {
+      console.log('Error on updating the todo element: ' + error);
+    }
+  };
+
   return {
     user,
     signUp,
@@ -147,7 +165,8 @@ const useAuthProvider = () => {
     getUserAdditionalData,
     signOut,
     sendPasswordResetEmail,
-    addNewTodoElement,
+    addTodoElement,
+    updateTodo,
     testValue,
     setTestValue,
     fetchTodoElements,

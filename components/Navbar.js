@@ -1,4 +1,4 @@
-const Navbar = ({ handleLogout }) => (
+const Navbar = ({ handleLogout, name }) => (
   <nav>
     <ul className="container">
       <img className="logo-img" src="../assets/logo.svg" alt="Logo" />
@@ -6,7 +6,7 @@ const Navbar = ({ handleLogout }) => (
         <a>keepworklog.com</a>
       </li>
       <li className="hello">
-        <a>Hello, Bogdan</a>
+        <a>Hello, {name}</a>
       </li>
       <li className="signout">
         <a onClick={handleLogout}>Sign out</a>

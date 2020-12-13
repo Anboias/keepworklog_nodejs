@@ -10,7 +10,7 @@ const Todonew = () => {
 
   const auth = useAuth();
 
-  const { addNewTodoElement, testValue, setTestValue, todos, setTodos } = auth;
+  const { addTodoElement, testValue, setTestValue, todos, setTodos } = auth;
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -30,7 +30,7 @@ const Todonew = () => {
 
     setTodos([...todos, newTodo]);
     setValue('');
-    addNewTodoElement(newTodo);
+    addTodoElement(newTodo);
     e.preventDefault();
 
     // setTodos(oldTodos => [...oldTodos, e.target.value]);

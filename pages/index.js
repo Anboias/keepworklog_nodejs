@@ -23,50 +23,40 @@ import { useRouter } from 'next/router';
 
 export default function Home() {
   // Worklog container
+
+  const auth = useRequireAuth();
+  const { user, fetchTodoElements, signOut } = auth;
+
+  const router = useRouter();
+
   const [currentWeekNo, setCurrentWeekNo] = useState(1);
 
   let year = 2022;
+
   const allWeeksFromYear = getWeekNumbers(year);
   // const Week = weeks.map((Week) => Week);
   const handleWeekChange = (e) => {
     setCurrentWeekNo(e.target.value);
   };
 
-  const auth = useRequireAuth();
+  useEffect(() => {
+    console.log('INDEX: ', user);
+    if (user) {
+      fetchTodoElements();
+    } else {
+      // router.push('/login');
+    }
+  }, []);
+
+  const loading = false;
 
   useEffect(() => {
-    // setTodos(fetchTodoElements('done'));
-    // console.log('TODOSSSSSS: ', todos);
-    if (auth.user) {
-      // fetchTodoElementsLocal();
-      auth.fetchTodoElements();
+    if (!(user || loading)) {
+      router.push('/login');
     }
-  }, [auth.user]);
+  }, [user, loading]);
 
-  // const fetchTodoElementsLocal = async () => {
-  //   console.log('INSIDE index.js START: ');
-
-  //   const allTodos = [];
-  //   db.collection('todos')
-  //     .doc(auth.user.uid)
-  //     .collection('todolist')
-  //     .get()
-  //     .then((snapshot) => {
-  //       snapshot.docs.forEach((todo) => {
-  //         console.log('INSIDE index.js: '.snapshot);
-  //         let currentID = todo.id;
-  //         let appObj = { ...todo.data(), ['id']: currentID };
-  //         allTodos.push(appObj);
-  //       });
-  //       setTodos(allTodos);
-  //     })
-  //     .catch((error) => {
-  //       console.log('Inside index.js USeEffectErrro: ', error);
-  //     });
-  //   console.log('INSIDE index.js END: ');
-  // };
-
-  return (
+  return user ? (
     <>
       <Head>
         <title> Keep Worklog </title> <link rel="icon" href="/favicon.ico" />{' '}
@@ -77,7 +67,7 @@ export default function Home() {
         />
       </Head>{' '}
       <div>
-        <Navbar handleLogout={auth.signOut} />{' '}
+        <Navbar handleLogout={signOut} name={user?.name} />{' '}
         <main>
           <Worklog
             currentWeekNo={currentWeekNo}
@@ -95,5 +85,5 @@ export default function Home() {
         </main>{' '}
       </div>{' '}
     </>
-  );
+  ) : null;
 }
