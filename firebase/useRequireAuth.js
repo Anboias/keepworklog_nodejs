@@ -9,7 +9,7 @@ export const useRequireAuth = () => {
     if (auth.user === null) {
       // router.push('/login');
     } else {
-      console.log('useRequireAuth: logged in. User: ', auth.user);
+      // console.log('useRequireAuth: logged in. User: ', auth.user);
       // router.push('/'); // DON'T! Infinite loop
     }
   }, [auth, router]);

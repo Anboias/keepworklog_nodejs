@@ -3,28 +3,23 @@ import { useDrag, useDrop } from 'react-dnd';
 
 import { useAuth } from '../firebase/useAuth';
 
-const TodolistElement = ({ todo }) => {
-  let status = false;
-
-  const { updateTodo } = useAuth();
-
+const TodolistElement = ({ todo, updateTodo }) => {
   const handleClick = (e) => {
     console.log('Not implemented.');
   };
 
   const handleSlide = (e) => {
-    status = !status;
-    const newTodo = { ...todo, isDone: status };
+    const newTodo = { ...todo, completed: !todo.completed };
 
-    console.log('newTodo: ', newTodo);
+    console.log('handleSlide. newTodo: ', newTodo);
 
     updateTodo(newTodo);
   };
 
   return (
     <li key={todo.id} className="draggable movable-item item">
-      <div className={`todo-container ${todo.isDone && 'todo-done'}`}>
-        {todo.isDone ? (
+      <div className={`todo-container ${todo.completed && 'todo-done'}`}>
+        {todo.archived ? (
           <i className="fas fa-check-circle"></i>
         ) : (
           <>

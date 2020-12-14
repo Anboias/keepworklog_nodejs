@@ -4,7 +4,7 @@ import getDateRangeOfWeek, {
   getWeekNumbers,
 } from '../utils/getDateRangeOfWeek';
 
-const Weeks = ({ currentWeekNo, year, todos }) => {
+const Weeks = ({ todos, currentWeekNo, year }) => {
   let currentWeek = getDateRangeOfWeek(currentWeekNo, year);
 
   return (

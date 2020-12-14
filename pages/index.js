@@ -10,6 +10,7 @@ import Footer from '../components/Footer';
 import 'firebase/auth';
 import { db } from '../firebase/firebaseConfig';
 import data from '../data';
+import { v4 as uuidv4 } from 'uuid';
 
 // Worklog container
 import getDateRangeOfWeek, {
@@ -19,13 +20,9 @@ import getDateRangeOfWeek, {
 import { useRequireAuth } from '../firebase/useRequireAuth';
 import { useRouter } from 'next/router';
 
-// import { fetchTodoElements } from '../firebase/useAuth';
-
 export default function Home() {
-  // Worklog container
-
   const auth = useRequireAuth();
-  const { user, fetchTodoElements, signOut } = auth;
+  const { user, signOut } = auth;
 
   const router = useRouter();
 
@@ -42,11 +39,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log('INDEX: ', user);
+    // console.log('INDEX: ', user);
     if (user) {
       fetchTodoElements();
     } else {
-      console.log('INDEX ELSE', user);
+      // console.log('INDEX ELSE', user);
       // router.push('/login');
     }
   }, [user]);
@@ -56,13 +53,13 @@ export default function Home() {
   useEffect(() => {
     isLoaded = false;
     if (!(user || loading)) {
-      console.log('LOADING: ', loading);
-      console.log('USER: ', user);
+      // console.log('LOADING: ', loading);
+      // console.log('USER: ', user);
       // TBD. Routes to login after refresh
       // router.push('/login');
     } else {
-      console.log('LOADING2: ', loading);
-      console.log('USER2: ', user);
+      // console.log('LOADING2: ', loading);
+      // console.log('USER2: ', user);
       if (!user?.name) {
         if (!isLoaded) {
           isLoaded = true;
@@ -72,10 +69,73 @@ export default function Home() {
         }
       }
     }
-    console.log('isLoaded: ', isLoaded);
-    console.log('userName: ', user?.name);
-    console.log('------------------------------: ');
+    // console.log('isLoaded: ', isLoaded);
+    // console.log('userName: ', user?.name);
+    // console.log('------------------------------: ');
   }, [user, loading]);
+
+  const [todos, setTodos] = useState([]);
+
+  const fetchTodoElements = async () => {
+    const allTodos = [];
+    db.collection('todos')
+      .doc(user.uid)
+      .collection('todolist')
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((todo) => {
+          let currentID = todo.id;
+          let appObj = { ...todo.data(), ['id']: currentID };
+          allTodos.push(appObj);
+        });
+        setTodos(allTodos);
+      })
+      .catch((error) => {
+        console.log('Error: ', error);
+      });
+    console.log('Success');
+  };
+
+  const addTodoElement = async (newTodo) => {
+    try {
+      await db
+        .collection('todos')
+        .doc(user.uid)
+        .collection('todolist')
+        .doc(uuidv4())
+        .set(newTodo)
+        .then(() => {
+          console.log('New todo added. Now fetch the list again.');
+          fetchTodoElements();
+        });
+      console.log('Success. New todo added');
+    } catch (error) {
+      console.log('Error on adding todo element: ' + error);
+    }
+  };
+
+  // Not working yet. Called from TodolistElement
+  const updateTodo = async (todo) => {
+    console.log('user.id: ', user.uid);
+    try {
+      await db
+        .collection('todos')
+        .doc(user.uid)
+        .collection('todolist')
+        .doc(todo.id)
+        .update({
+          content: todo.content,
+          completed: todo.completed,
+          archived: todo.archived,
+        })
+        .then(() => {
+          console.log('Todo updated. Now fetch the list again.', todo);
+          fetchTodoElements();
+        });
+    } catch (error) {
+      console.log('Error on updating the todo element: ' + error);
+    }
+  };
 
   return user?.name ? (
     <>
@@ -99,9 +159,13 @@ export default function Home() {
             getDateRangeOfWeek={getDateRangeOfWeek}
             year={year}
           />{' '}
-          <Todonew />
-          <Weeks data={data} currentWeekNo={currentWeekNo} year={year} />{' '}
-          <Todolist />
+          <Todonew
+            todos={todos}
+            setTodos={setTodos}
+            addTodoElement={addTodoElement}
+          />
+          <Weeks todos={todos} currentWeekNo={currentWeekNo} year={year} />{' '}
+          <Todolist todos={todos} updateTodo={updateTodo} />
           <Footer />
         </main>{' '}
       </div>{' '}

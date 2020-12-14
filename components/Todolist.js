@@ -4,19 +4,36 @@ import { db } from '../firebase/firebaseConfig';
 
 import TodolistElement from './TodolistElement';
 
-import { useAuth } from '../firebase/useAuth';
+const Todolist = ({ todos, updateTodo }) => {
+  const handleArchive = () => {
+    todos
+      .filter((all) => all.completed === true)
+      .map((todo) => {
+        console.log('this todo: ', todo);
+        const newTodo = { ...todo, archived: true };
+        console.log('THE NEW todo: ', newTodo);
 
-const Todolist = () => {
-  const { todos, setTodos } = useAuth();
+        updateTodo(newTodo);
+      });
+    console.log('TODOS after update: ', todos);
+  };
 
   return (
     <section id="todolist">
       <div className="container">
+        <br />
+        <button onClick={handleArchive}>Archive all</button>
         <ul className="todo-list sortable">
           {todos
-            .filter((all) => all.isDone === false)
+            .filter((all) => all.archived === false)
             .map((todo, index) => {
-              return <TodolistElement key={index} todo={todo} />;
+              return (
+                <TodolistElement
+                  key={index}
+                  todo={todo}
+                  updateTodo={updateTodo}
+                />
+              );
             })}
         </ul>
       </div>

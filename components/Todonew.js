@@ -4,13 +4,13 @@ import { useAuth } from '../firebase/useAuth';
 import { db } from '../firebase/firebaseConfig';
 import { getCurrentDate } from '../utils/getCurrentDate';
 
-const Todonew = () => {
+const Todonew = ({ todos, setTodos, addTodoElement }) => {
   const [value, setValue] = useState('');
   const [userId, setUserId] = useState(0);
 
   const auth = useAuth();
 
-  const { addTodoElement, testValue, setTestValue, todos, setTodos } = auth;
+  const { testValue, setTestValue } = auth;
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -21,12 +21,14 @@ const Todonew = () => {
     setTestValue(testValue + 1);
 
     let newTodo = {};
-    newTodo.id = '20';
-    newTodo.isDone = value.includes('done') ? true : false;
-    newTodo.date = value.includes('2021')
-      ? value.substring(value.indexOf('2021'), value.indexOf('2021') + 8)
-      : getCurrentDate();
+    newTodo.orderId = '20';
+    newTodo.completed = value.includes('done') ? true : false;
+    newTodo.date = '20210104';
+    // newTodo.date = value.includes('2021')
+    //   ? value.substring(value.indexOf('2021'), value.indexOf('2021') + 8)
+    //   : getCurrentDate();
     newTodo.content = value + ' + ' + newTodo.date + ' + ' + testValue;
+    newTodo.archived = false;
 
     setTodos([...todos, newTodo]);
     setValue('');

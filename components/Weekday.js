@@ -1,11 +1,9 @@
 import TodolistElement from './TodolistElement';
 import data from '../data';
-import { useAuth } from '../firebase/useAuth';
 
-const Weekday = ({ day, currentWeek }) => {
+const Weekday = ({ todos, day, currentWeek }) => {
   let currentDate = currentWeek.year + currentWeek.month + currentWeek.day;
   // console.log('inside ', currentWeek);
-  const { todos, setTodos } = useAuth();
 
   return (
     <div className="weekday">
@@ -15,7 +13,7 @@ const Weekday = ({ day, currentWeek }) => {
       <ul className="weekday-list sortable">
         <>
           {todos
-            .filter((all) => all.isDone === true && all.date === currentDate)
+            .filter((all) => all.archived === true && all.date === currentDate)
             .map((todo, index) => {
               return <TodolistElement key={index} todo={todo} />;
             })}
