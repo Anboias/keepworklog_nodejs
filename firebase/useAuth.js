@@ -27,6 +27,8 @@ const useAuthProvider = () => {
   const [testValue, setTestValue] = useState(1);
   const [todos, setTodos] = useState([]);
 
+  console.log('Inside useAuth', user);
+
   const createUser = async (user) => {
     try {
       await db.collection('users').doc(user.uid).set(user);
@@ -73,6 +75,8 @@ const useAuthProvider = () => {
   };
 
   const handleAuthStateChanged = (user) => {
+    console.log('Inside 1st useEffect. handleAuthStateChanged', user);
+
     setUser(user);
     if (user) {
       getUserAdditionalData(user);
@@ -82,19 +86,21 @@ const useAuthProvider = () => {
   useEffect(() => {
     const unsub = auth.onAuthStateChanged(handleAuthStateChanged);
 
+    console.log('Inside 1st useEffect', user);
+
     return () => unsub();
   }, []);
 
-  // useEffect(() => {
-  //   if (user?.uid) {
-  //     // Subscribe to user document on mount
-  //     const unsubscribe = db
-  //       .collection('users')
-  //       .doc(user.uid)
-  //       .onSnapshot((doc) => setUser(doc.data()));
-  //     return () => unsubscribe();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (user?.uid) {
+      // Subscribe to user document on mount
+      const unsubscribe = db
+        .collection('users')
+        .doc(user.uid)
+        .onSnapshot((doc) => setUser(doc.data()));
+      return () => unsubscribe();
+    }
+  }, []);
 
   const signOut = async () => {
     await auth.signOut();

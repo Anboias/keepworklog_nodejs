@@ -31,6 +31,8 @@ export default function Home() {
 
   const [currentWeekNo, setCurrentWeekNo] = useState(1);
 
+  let isLoaded = false;
+
   let year = 2022;
 
   const allWeeksFromYear = getWeekNumbers(year);
@@ -44,19 +46,38 @@ export default function Home() {
     if (user) {
       fetchTodoElements();
     } else {
+      console.log('INDEX ELSE', user);
       // router.push('/login');
     }
-  }, []);
+  }, [user]);
 
   const loading = false;
 
   useEffect(() => {
+    isLoaded = false;
     if (!(user || loading)) {
-      router.push('/login');
+      console.log('LOADING: ', loading);
+      console.log('USER: ', user);
+      // TBD. Routes to login after refresh
+      // router.push('/login');
+    } else {
+      console.log('LOADING2: ', loading);
+      console.log('USER2: ', user);
+      if (!user?.name) {
+        if (!isLoaded) {
+          isLoaded = true;
+        } else {
+          isLoaded = false;
+          // router.push('/login');
+        }
+      }
     }
+    console.log('isLoaded: ', isLoaded);
+    console.log('userName: ', user?.name);
+    console.log('------------------------------: ');
   }, [user, loading]);
 
-  return user ? (
+  return user?.name ? (
     <>
       <Head>
         <title> Keep Worklog </title> <link rel="icon" href="/favicon.ico" />{' '}
@@ -85,5 +106,9 @@ export default function Home() {
         </main>{' '}
       </div>{' '}
     </>
-  ) : null;
+  ) : (
+    <>
+      <Navbar handleLogout={null} name={' please login.'} />
+    </>
+  );
 }
