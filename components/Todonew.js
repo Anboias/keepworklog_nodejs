@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import data from '../data';
 import { useAuth } from '../firebase/useAuth';
 import { db } from '../firebase/firebaseConfig';
 import { getCurrentDate } from '../utils/getCurrentDate';

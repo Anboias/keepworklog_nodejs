@@ -9,7 +9,6 @@ import Footer from '../components/Footer';
 
 import 'firebase/auth';
 import { db } from '../firebase/firebaseConfig';
-import data from '../data';
 import { v4 as uuidv4 } from 'uuid';
 
 // Worklog container

@@ -1,5 +1,4 @@
 import TodolistElement from './TodolistElement';
-import data from '../data';
 
 const Weekday = ({ todos, day, currentWeek, updateTodo }) => {
   let currentDate = currentWeek.year + currentWeek.month + currentWeek.day;
