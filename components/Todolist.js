@@ -4,7 +4,7 @@ import { db } from '../firebase/firebaseConfig';
 
 import TodolistElement from './TodolistElement';
 
-const Todolist = ({ todos, updateTodo }) => {
+const Todolist = ({ todos, updateTodo, deleteTodo }) => {
   const handleArchive = () => {
     todos
       .filter((all) => all.completed === true)
@@ -32,6 +32,7 @@ const Todolist = ({ todos, updateTodo }) => {
                   key={index}
                   todo={todo}
                   updateTodo={updateTodo}
+                  deleteTodo={deleteTodo}
                 />
               );
             })}

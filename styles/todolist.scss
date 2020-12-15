@@ -79,11 +79,12 @@
           }
 
           p {
-            // cursor: text;
+            cursor: text;
             margin: 15px 60px 15px 20px;
             padding: 2px;
-            font-size: 14px;
+            font-size: 18px;
             line-height: 130%;
+            z-index: 99;
           }
 
           /* Hide elements from the TODO-list moved here from the Week column */

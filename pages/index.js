@@ -114,7 +114,24 @@ export default function Home() {
     }
   };
 
-  // Not working yet. Called from TodolistElement
+  const deleteTodo = async (todo) => {
+    try {
+      await db
+        .collection('todos')
+        .doc(user.uid)
+        .collection('todolist')
+        .doc(todo.id)
+        .delete()
+        .then(() => {
+          console.log('Todo deleted.');
+          fetchTodoElements();
+        });
+      console.log('Success. Todo deleted.');
+    } catch (error) {
+      console.log('Error on deleting todo element: ' + error);
+    }
+  };
+
   const updateTodo = async (todo) => {
     console.log('user.id: ', user.uid);
     try {
@@ -164,8 +181,17 @@ export default function Home() {
             setTodos={setTodos}
             addTodoElement={addTodoElement}
           />
-          <Weeks todos={todos} currentWeekNo={currentWeekNo} year={year} />{' '}
-          <Todolist todos={todos} updateTodo={updateTodo} />
+          <Weeks
+            todos={todos}
+            updateTodo={updateTodo}
+            currentWeekNo={currentWeekNo}
+            year={year}
+          />{' '}
+          <Todolist
+            todos={todos}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
+          />
           <Footer />
         </main>{' '}
       </div>{' '}

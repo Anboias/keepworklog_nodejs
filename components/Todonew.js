@@ -27,7 +27,7 @@ const Todonew = ({ todos, setTodos, addTodoElement }) => {
     // newTodo.date = value.includes('2021')
     //   ? value.substring(value.indexOf('2021'), value.indexOf('2021') + 8)
     //   : getCurrentDate();
-    newTodo.content = value + ' + ' + newTodo.date + ' + ' + testValue;
+    newTodo.content = value;
     newTodo.archived = false;
 
     setTodos([...todos, newTodo]);
