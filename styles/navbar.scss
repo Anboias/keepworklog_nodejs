@@ -19,6 +19,13 @@ nav {
     margin: 0 40px;
     padding: 0;
 
+    .beta {
+      color: rgb(177, 37, 37);
+      font-size: 18px;
+      text-transform: uppercase;
+      ;
+    }
+
     li {
       flex: 1;
       text-align: center;

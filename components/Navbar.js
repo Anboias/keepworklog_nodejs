@@ -12,7 +12,9 @@ const Navbar = ({ handleLogout, name }) => {
       <ul className="container">
         <img className="logo-img" src="../assets/logo.svg" alt="Logo" />
         <li className="logo-txt">
-          <a>keepworklog.com</a>
+          <a>
+            keepworklog.com <span className="beta">Beta</span>
+          </a>
         </li>
         <li className="hello">
           <a>Hello, {name}</a>
