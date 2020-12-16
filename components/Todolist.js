@@ -16,9 +16,8 @@ const Todolist = ({ todos, updateTodo, deleteTodo }) => {
   return (
     <section id="todolist">
       <div className="container">
-        <br />
-        <button onClick={handleArchive}>Archive all</button>
         <ul className="todo-list sortable">
+          <button onClick={handleArchive}>Archive all done</button>
           {todos
             .filter((all) => all.archived === false)
             .map((todo, index) => {

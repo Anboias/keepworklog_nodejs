@@ -7,6 +7,25 @@
   .container {
     padding-bottom: 30px;
 
+    button {
+      @include box-style;
+      color: $leftBgColor;
+      background-color: white;
+      border: 1px solid rgba(17, 47, 95, 0.3);
+      border-radius: 4px;
+      padding: 7px;
+      margin: 10px 0 0 auto;
+
+
+      &:hover {
+        background-color: $navBgColor;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+      }
+
+    }
+
     .sortable {
       min-height: 100vh;
     }
