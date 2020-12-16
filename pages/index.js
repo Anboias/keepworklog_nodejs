@@ -32,7 +32,7 @@ export default function Home() {
 
   let year = 2022;
 
-  const allWeeksFromYear = getWeekNumbers(year);
+  const allWeeksFromYear = getWeekNumbers(currentYear);
   // const Week = weeks.map((Week) => Week);
   const handleWeekChange = (e) => {
     setCurrentWeekNo(e.target.value);
@@ -173,6 +173,7 @@ export default function Home() {
         <main>
           <Worklog
             currentWeekNo={currentWeekNo}
+            currentYear={currentYear}
             setCurrentWeekNo={setCurrentWeekNo}
             getWeekNumbers={getWeekNumbers}
             handleWeekChange={handleWeekChange}

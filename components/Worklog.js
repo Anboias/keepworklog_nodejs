@@ -3,6 +3,7 @@ import getMonthName from '../utils/getMonthName';
 
 const Worklog = ({
   currentWeekNo,
+  currentYear,
   setCurrentWeekNo,
   getWeekNumbers,
   handleWeekChange,
@@ -11,7 +12,19 @@ const Worklog = ({
   getWeekNumber,
   year,
 }) => {
-  const years = [2020, 2021, 2022, 2023, 2024, 2025];
+  const years = [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026,
+    2027,
+    2028,
+    2029,
+    2030,
+  ];
 
   return (
     <section id="worklog">
