@@ -21,7 +21,7 @@ const Worklog = ({
             onChange={(e) => handleWeekChange(e)}
           >
             Week{' '}
-            {/* {allWeeksFromYear.map((week, index) => {
+            {allWeeksFromYear.map((week, index) => {
               return (
                 <option key={index} value={index + 1}>
                   Week {String(index + 1).padStart(2, '0')} :{' '}
@@ -31,7 +31,7 @@ const Worklog = ({
                     getMonthName(week[week.length - 1].month)}
                 </option>
               );
-            })} */}
+            })}
           </select>
         </span>
       </div>
