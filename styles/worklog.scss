@@ -10,7 +10,12 @@
         text-transform: uppercase;
         margin: auto;
 
-        p,
+        h1 {
+            margin-bottom: 0;
+        }
+
+        h1,
+        h2,
         #allyears {
             font-size: 24px;
             letter-spacing: 0.345em;

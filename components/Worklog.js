@@ -29,8 +29,8 @@ const Worklog = ({
   return (
     <section id="worklog">
       <div className="container">
-        <p>
-          Worklog{' '}
+        <h1>
+          Worklog
           <select
             id="allyears"
             name="allyears"
@@ -46,8 +46,8 @@ const Worklog = ({
               );
             })}
           </select>
-        </p>
-        <span>
+        </h1>
+        <h2>
           <select
             id="allweeks"
             name="allweeks"
@@ -68,7 +68,7 @@ const Worklog = ({
               );
             })}
           </select>
-        </span>
+        </h2>
       </div>
     </section>
   );

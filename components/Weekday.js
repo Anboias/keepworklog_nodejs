@@ -6,7 +6,7 @@ const Weekday = ({ todos, day, currentWeek, updateTodo }) => {
 
   return (
     <div className="weekday">
-      <p>{day + ', ' + currentWeek.day}</p>
+      <p className="day">{day + ', ' + currentWeek.day}</p>
       <i className="far fa-copy"></i>
 
       <ul className="weekday-list sortable">
