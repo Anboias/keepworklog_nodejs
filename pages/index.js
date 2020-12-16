@@ -17,6 +17,8 @@ import getDateRangeOfWeek, {
   getWeekNumber,
 } from '../utils/getDateRangeOfWeek';
 
+import { getCurrentDate } from '../utils/getCurrentDate';
+
 import { useRequireAuth } from '../firebase/useRequireAuth';
 import { useRouter } from 'next/router';
 
@@ -62,7 +64,6 @@ export default function Home() {
   useEffect(() => {
     isLoaded = false;
     if (!(user || loading)) {
-      // console.log('LOADING: ', loading);
       // console.log('USER: ', user);
       // TBD. Routes to login after refresh
       // router.push('/login');
@@ -78,9 +79,6 @@ export default function Home() {
         }
       }
     }
-    // console.log('isLoaded: ', isLoaded);
-    // console.log('userName: ', user?.name);
-    // console.log('------------------------------: ');
   }, [user, loading]);
 
   const [todos, setTodos] = useState([]);
@@ -142,7 +140,8 @@ export default function Home() {
   };
 
   const updateTodo = async (todo) => {
-    console.log('user.id: ', user.uid);
+    console.log('todo: ', JSON.stringify(todo));
+    console.log('getCurrentDate: ', getCurrentDate());
     try {
       await db
         .collection('todos')
@@ -153,6 +152,7 @@ export default function Home() {
           content: todo.content,
           completed: todo.completed,
           archived: todo.archived,
+          date: getCurrentDate(),
         })
         .then(() => {
           console.log('Todo updated. Now fetch the list again.', todo);
@@ -166,7 +166,14 @@ export default function Home() {
   return user?.name ? (
     <>
       <Head>
-        <title> Keep Worklog </title> <link rel="icon" href="/favicon.ico" />{' '}
+        <title> Keep Worklog </title> <link rel="icon" href="/favicon.ico" />
+        {/* <!-- Google font - Montserrat --> */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap"
+          rel="stylesheet"
+        />
+        {/* <!-- Font Awesome --> */}
         <link
           rel="stylesheet"
           type="text/css"

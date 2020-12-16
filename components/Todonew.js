@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../firebase/useAuth';
 import { db } from '../firebase/firebaseConfig';
-import { getCurrentDate } from '../utils/getCurrentDate';
 
 const Todonew = ({ todos, setTodos, addTodoElement }) => {
   const [value, setValue] = useState('');
@@ -22,10 +21,7 @@ const Todonew = ({ todos, setTodos, addTodoElement }) => {
     let newTodo = {};
     newTodo.orderId = '20';
     newTodo.completed = value.includes('done') ? true : false;
-    newTodo.date = '20210104';
-    // newTodo.date = value.includes('2021')
-    //   ? value.substring(value.indexOf('2021'), value.indexOf('2021') + 8)
-    //   : getCurrentDate();
+    newTodo.date = null;
     newTodo.content = value;
     newTodo.archived = false;
 

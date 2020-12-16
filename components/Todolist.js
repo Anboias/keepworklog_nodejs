@@ -6,7 +6,7 @@ import TodolistElement from './TodolistElement';
 const Todolist = ({ todos, updateTodo, deleteTodo }) => {
   const handleArchive = () => {
     todos
-      .filter((all) => all.completed === true)
+      .filter((all) => all.completed === true && all.archived === false)
       .map((todo) => {
         console.log('this todo: ', todo);
         const newTodo = { ...todo, archived: true };
