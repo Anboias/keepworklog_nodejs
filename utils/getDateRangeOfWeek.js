@@ -58,6 +58,8 @@ export const getWeekNumbers = () => {
   let index = 0;
   let indexOffset = 0;
 
+  getWeekNumber();
+
   while (index < 52) {
     current[index + indexOffset] = getDateRangeOfWeek(index + 1, year);
 
@@ -81,3 +83,14 @@ export const getWeekNumbers = () => {
 
 export default getDateRangeOfWeek;
 // console.log(getDateRangeOfWeek(49, 2020)); //12-21-2015 to 12-27-2015
+
+const getWeekNumber = () => {
+  console.log('Start getWeekNumber.');
+  var d = new Date(Date.UTC('20201230'));
+
+  var dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  var yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  console.log('The current ISO week number is ' + new Date().getWeekNumber());
+  return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+};

@@ -9,7 +9,7 @@ nav {
   width: 100%;
   height: $navHeight;
   min-width: $leftMinWidth + $rightMinWidth;
-  border: $slimBorder;
+  border-bottom: $slimBorder;
   z-index: 99;
 
   .container {
