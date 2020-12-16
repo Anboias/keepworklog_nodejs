@@ -2,10 +2,13 @@ import { useForm } from 'react-hook-form';
 import { auth, db } from '../firebase/firebaseConfig';
 import Button from './Button';
 import { useAuth } from '../firebase/useAuth';
+import { useRouter } from 'next/router';
 
 const SignUpForm = () => {
   // Needs to be replaced with real value
   const isLoading = false;
+
+  const router = useRouter();
 
   const auth = useAuth();
 
@@ -14,7 +17,7 @@ const SignUpForm = () => {
   const { register, errors, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-    const user = await signUp(data);
+    const user = await signUp(data).then(router.push('/'));
     console.log(user);
   };
 
