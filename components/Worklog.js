@@ -6,14 +6,33 @@ const Worklog = ({
   setCurrentWeekNo,
   getWeekNumbers,
   handleWeekChange,
+  handleYearChange,
   allWeeksFromYear,
   getWeekNumber,
   year,
 }) => {
+  const years = [2020, 2021, 2022, 2023, 2024, 2025];
+
   return (
     <section id="worklog">
       <div className="container">
-        <p>Worklog 2021</p>
+        <p>
+          Worklog{' '}
+          <select
+            id="allyears"
+            name="allyears"
+            onChange={(e) => handleYearChange(e)}
+          >
+            {years.map((year) => {
+              // week.length is used because there are arrays that are smaller than 7
+              return (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              );
+            })}
+          </select>
+        </p>
         <span>
           <select
             id="allweeks"

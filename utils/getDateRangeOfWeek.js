@@ -4,8 +4,6 @@ Date.prototype.getWeek = function (numOfdaysPastSinceLastMonday) {
   var date = new Date(this.getTime());
 
   date.setHours(0, 0, 0, 0);
-  let dayOffset = date.getDay();
-  console.log('numOfdaysPastSinceLastMonday', numOfdaysPastSinceLastMonday);
   date.setDate(
     date.getDate() + numOfdaysPastSinceLastMonday - ((date.getDay() + 6) % 7)
   );
@@ -49,9 +47,9 @@ const getDateRangeOfWeek = (weekNo, y) => {
   return days;
 };
 
-export const getWeekNumbers = () => {
+export const getWeekNumbers = (year) => {
   // Test with 1996, 2002, 1997, 2015, 1999, 2000, 2023
-  let year = 2023;
+  // let year = 2023;
   let current = [];
   let index = 0;
   let indexOffset = 0;

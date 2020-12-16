@@ -26,6 +26,7 @@ export default function Home() {
   const router = useRouter();
 
   const [currentWeekNo, setCurrentWeekNo] = useState(1);
+  const [currentYear, setCurrentYear] = useState(2020);
 
   let isLoaded = false;
 
@@ -35,6 +36,10 @@ export default function Home() {
   // const Week = weeks.map((Week) => Week);
   const handleWeekChange = (e) => {
     setCurrentWeekNo(e.target.value);
+  };
+
+  const handleYearChange = (e) => {
+    setCurrentYear(e.target.value);
   };
 
   useEffect(() => {
@@ -171,6 +176,7 @@ export default function Home() {
             setCurrentWeekNo={setCurrentWeekNo}
             getWeekNumbers={getWeekNumbers}
             handleWeekChange={handleWeekChange}
+            handleYearChange={handleYearChange}
             allWeeksFromYear={allWeeksFromYear}
             getDateRangeOfWeek={getDateRangeOfWeek}
             year={year}
