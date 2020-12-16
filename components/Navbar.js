@@ -23,7 +23,7 @@ const Navbar = ({ handleLogout, name }) => {
           {handleLogout ? (
             <a onClick={handleLogout}>Sign out</a>
           ) : (
-            <a onClick={handleLogin}>Login</a>
+            <a onClick={handleLogin}>Authenticate</a>
           )}
         </li>
       </ul>
