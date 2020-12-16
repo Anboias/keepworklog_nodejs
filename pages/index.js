@@ -14,32 +14,37 @@ import { v4 as uuidv4 } from 'uuid';
 // Worklog container
 import getDateRangeOfWeek, {
   getWeekNumbers,
+  getWeekNumber,
 } from '../utils/getDateRangeOfWeek';
 
 import { useRequireAuth } from '../firebase/useRequireAuth';
 import { useRouter } from 'next/router';
 
 export default function Home() {
+  const thisYear = new Date().getFullYear();
+  const thisWeek = getWeekNumber();
+
   const auth = useRequireAuth();
   const { user, signOut } = auth;
 
   const router = useRouter();
 
-  const [currentWeekNo, setCurrentWeekNo] = useState(1);
-  const [currentYear, setCurrentYear] = useState(2020);
+  const [currentYear, setCurrentYear] = useState(thisYear);
+  const [currentWeekNo, setCurrentWeekNo] = useState(thisWeek);
 
   let isLoaded = false;
 
-  let year = 2022;
-
   const allWeeksFromYear = getWeekNumbers(currentYear);
-  // const Week = weeks.map((Week) => Week);
+
   const handleWeekChange = (e) => {
     setCurrentWeekNo(e.target.value);
   };
 
   const handleYearChange = (e) => {
-    setCurrentYear(e.target.value);
+    let selectedYear = parseInt(e.target.value);
+
+    setCurrentYear(selectedYear);
+    setCurrentWeekNo(selectedYear === thisYear ? thisWeek : 1);
   };
 
   useEffect(() => {
@@ -180,7 +185,6 @@ export default function Home() {
             handleYearChange={handleYearChange}
             allWeeksFromYear={allWeeksFromYear}
             getDateRangeOfWeek={getDateRangeOfWeek}
-            year={year}
           />{' '}
           <Todonew
             todos={todos}
@@ -191,7 +195,7 @@ export default function Home() {
             todos={todos}
             updateTodo={updateTodo}
             currentWeekNo={currentWeekNo}
-            year={year}
+            year={currentYear}
           />{' '}
           <Todolist
             todos={todos}

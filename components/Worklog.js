@@ -34,6 +34,7 @@ const Worklog = ({
           <select
             id="allyears"
             name="allyears"
+            value={currentYear}
             onChange={(e) => handleYearChange(e)}
           >
             {years.map((year) => {
@@ -50,6 +51,7 @@ const Worklog = ({
           <select
             id="allweeks"
             name="allweeks"
+            value={currentWeekNo}
             onChange={(e) => handleWeekChange(e)}
           >
             Week{' '}

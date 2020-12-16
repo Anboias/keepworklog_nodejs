@@ -1,5 +1,5 @@
 // Returns the ISO week of the date.
-Date.prototype.getWeek = function (numOfdaysPastSinceLastMonday) {
+Date.prototype.getWeekPrototype = function (numOfdaysPastSinceLastMonday) {
   numOfdaysPastSinceLastMonday = Math.abs(numOfdaysPastSinceLastMonday);
   var date = new Date(this.getTime());
 
@@ -23,6 +23,12 @@ Date.prototype.getWeek = function (numOfdaysPastSinceLastMonday) {
   );
 };
 
+// Returns the current week number
+Date.prototype.getWeekNumberPrototype = function () {
+  var onejan = new Date(this.getFullYear(), 0, 1);
+  return Math.ceil(((this - onejan) / 86400000 + onejan.getDay() + 1) / 7);
+};
+
 const getDateRangeOfWeek = (weekNo, y) => {
   var day, numOfdaysPastSinceLastMonday, dayOne, dayTwo;
   let days = [];
@@ -31,7 +37,8 @@ const getDateRangeOfWeek = (weekNo, y) => {
   numOfdaysPastSinceLastMonday = day.getDay() - 1;
   day.setDate(day.getDate() - numOfdaysPastSinceLastMonday);
   day.setDate(
-    day.getDate() + 7 * (weekNo - day.getWeek(numOfdaysPastSinceLastMonday))
+    day.getDate() +
+      7 * (weekNo - day.getWeekPrototype(numOfdaysPastSinceLastMonday))
   );
   day.setDate(day.getDate() - 1);
 
@@ -69,6 +76,13 @@ export const getWeekNumbers = (year) => {
     index++;
   }
   return current;
+};
+
+export const getWeekNumber = () => {
+  var today = new Date();
+  var weekNumber = today.getWeekNumberPrototype();
+  console.log('weekNumber', weekNumber);
+  return weekNumber;
 };
 
 export default getDateRangeOfWeek;
