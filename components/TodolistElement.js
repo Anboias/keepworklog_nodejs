@@ -24,7 +24,7 @@ const TodolistElement = ({ todo, updateTodo, deleteTodo }) => {
   };
 
   const handleSendBack = (e) => {
-    const newTodo = { ...todo, archived: false };
+    const newTodo = { ...todo, archived: false, completed: false };
     console.log('handleSendBack');
     updateTodo(newTodo);
   };
