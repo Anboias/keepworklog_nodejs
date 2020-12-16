@@ -22,6 +22,7 @@ const Worklog = ({
           >
             Week{' '}
             {allWeeksFromYear.map((week, index) => {
+              // week.length is used because there are arrays that are smaller than 7
               return (
                 <option key={index} value={index + 1}>
                   Week {String(index + 1).padStart(2, '0')} :{' '}
