@@ -58,7 +58,7 @@ export const getWeekNumbers = () => {
   let index = 0;
   let indexOffset = 0;
 
-  getWeekNumber();
+  // getWeekNumber();
 
   while (index < 52) {
     current[index + indexOffset] = getDateRangeOfWeek(index + 1, year);
