@@ -6,6 +6,9 @@ const Navbar = ({ handleLogout, name }) => {
   const handleLogin = () => {
     router.push('/login');
   };
+  const handleSignUp = () => {
+    router.push('/signup');
+  };
 
   return (
     <nav>
@@ -19,11 +22,14 @@ const Navbar = ({ handleLogout, name }) => {
         <li className="hello">
           <a>Hello, {name}</a>
         </li>
-        <li className="signout">
+        <li className="right">
           {handleLogout ? (
             <a onClick={handleLogout}>Sign out</a>
           ) : (
-            <a onClick={handleLogin}>Authenticate</a>
+            <>
+              <a onClick={handleSignUp}>Create account</a>
+              <a onClick={handleLogin}>Login</a>
+            </>
           )}
         </li>
       </ul>

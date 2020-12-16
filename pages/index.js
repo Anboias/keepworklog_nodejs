@@ -211,7 +211,7 @@ export default function Home() {
     </>
   ) : (
     <>
-      <Navbar handleLogout={null} name={' please login.'} />
+      <Navbar handleLogout={null} name={' please authenticate.'} />
     </>
   );
 }

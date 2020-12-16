@@ -19,6 +19,7 @@ nav {
     margin: 0 40px;
     padding: 0;
 
+
     .beta {
       color: rgb(177, 37, 37);
       font-size: 18px;
@@ -33,6 +34,7 @@ nav {
       line-height: 24px;
       letter-spacing: -0.015em;
       list-style-type: none;
+
     }
 
     .hello {
@@ -43,8 +45,17 @@ nav {
       text-align: left;
     }
 
-    .signout {
+    .right {
       text-align: right;
+
+      a {
+        padding: 8px 10px;
+        height: 100%;
+
+        &:hover {
+          background-color: rgba(1, 1, 1, 0.1);
+        }
+      }
     }
   }
 }
