@@ -42,7 +42,11 @@ const TodolistElement = ({ todo, updateTodo, deleteTodo }) => {
           <>
             <i className="fas fa-ellipsis-v"></i>
             <label className="switch">
-              <input type="checkbox" onClick={handleSlide} />
+              <input
+                type="checkbox"
+                defaultChecked={todo.completed}
+                onClick={handleSlide}
+              />
               <span className="slider round"></span>
             </label>
             <i className="fas fa-trash-alt" onClick={handleDelete}></i>
