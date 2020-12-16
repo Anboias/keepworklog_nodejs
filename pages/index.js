@@ -83,7 +83,7 @@ export default function Home() {
 
   const fetchTodoElements = async () => {
     const allTodos = [];
-    db.collection('todos')
+    db.collection('users')
       .doc(user.uid)
       .collection('todolist')
       .get()
@@ -104,7 +104,7 @@ export default function Home() {
   const addTodoElement = async (newTodo) => {
     try {
       await db
-        .collection('todos')
+        .collection('users')
         .doc(user.uid)
         .collection('todolist')
         .doc(uuidv4())
@@ -122,7 +122,7 @@ export default function Home() {
   const deleteTodo = async (todo) => {
     try {
       await db
-        .collection('todos')
+        .collection('users')
         .doc(user.uid)
         .collection('todolist')
         .doc(todo.id)
@@ -140,7 +140,7 @@ export default function Home() {
   const updateTodo = async (todo) => {
     try {
       await db
-        .collection('todos')
+        .collection('users')
         .doc(user.uid)
         .collection('todolist')
         .doc(todo.id)

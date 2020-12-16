@@ -13,11 +13,18 @@ const Todolist = ({ todos, updateTodo, deleteTodo }) => {
       });
   };
 
+  const copyList = () => {
+    todos.filter((all) => {
+      updateTodo(all);
+    });
+  };
+
   return (
     <section id="todolist">
       <div className="container">
         <ul className="todo-list sortable">
           <button onClick={handleArchive}>Archive all done</button>
+          <button onClick={copyList}>Copy list</button>
           {todos
             .filter((all) => all.archived === false)
             .map((todo, index) => {
