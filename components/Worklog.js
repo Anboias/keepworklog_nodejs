@@ -12,19 +12,10 @@ const Worklog = ({
   getWeekNumber,
   year,
 }) => {
-  const years = [
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-    2026,
-    2027,
-    2028,
-    2029,
-    2030,
-  ];
+  let years = [];
+  for (let i = 2020; i <= 2025; i++) {
+    years.push(i);
+  }
 
   return (
     <section id="worklog">

@@ -98,7 +98,7 @@ export default function Home() {
       .catch((error) => {
         console.log('Error: ', error);
       });
-    console.log('Success');
+    console.log('Success on fetching the todo list.');
   };
 
   const addTodoElement = async (newTodo) => {

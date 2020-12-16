@@ -81,7 +81,6 @@ export const getWeekNumbers = (year) => {
 export const getWeekNumber = () => {
   var today = new Date();
   var weekNumber = today.getWeekNumberPrototype();
-  console.log('weekNumber', weekNumber);
   return weekNumber;
 };
 
