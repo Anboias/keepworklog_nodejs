@@ -17,8 +17,6 @@ import getDateRangeOfWeek, {
   getWeekNumber,
 } from '../utils/getDateRangeOfWeek';
 
-import { getCurrentDate } from '../utils/getCurrentDate';
-
 import { useRequireAuth } from '../firebase/useRequireAuth';
 import { useRouter } from 'next/router';
 
@@ -140,8 +138,6 @@ export default function Home() {
   };
 
   const updateTodo = async (todo) => {
-    console.log('todo: ', JSON.stringify(todo));
-    console.log('getCurrentDate: ', getCurrentDate());
     try {
       await db
         .collection('todos')
@@ -152,7 +148,7 @@ export default function Home() {
           content: todo.content,
           completed: todo.completed,
           archived: todo.archived,
-          date: getCurrentDate(),
+          date: todo.date,
         })
         .then(() => {
           console.log('Todo updated. Now fetch the list again.', todo);

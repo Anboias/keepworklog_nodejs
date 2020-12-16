@@ -2,20 +2,23 @@ import React, { Fragment, useState, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 import { useAuth } from '../firebase/useAuth';
+import { getCurrentDate } from '../utils/getCurrentDate';
 
 const TodolistElement = ({ todo, updateTodo, deleteTodo }) => {
   const [value, setValue] = useState('');
   const [editable, setEdit] = useState(false);
 
   const handleEdit = (e) => {
-    console.log('handleEdit not implemented.');
+    console.log('Edit not implemented.');
   };
 
   const handleSlide = (e) => {
-    const newTodo = { ...todo, completed: !todo.completed };
-    console.log('handleSlide. newTodo: ', newTodo);
-    // Set date field to today. Make util function to extract it
-    updateTodo(newTodo);
+    const updatedTodo = {
+      ...todo,
+      completed: !todo.completed,
+      date: getCurrentDate(),
+    };
+    updateTodo(updatedTodo);
   };
 
   const handleDelete = () => {
@@ -24,7 +27,8 @@ const TodolistElement = ({ todo, updateTodo, deleteTodo }) => {
   };
 
   const handleSendBack = (e) => {
-    const newTodo = { ...todo, archived: false, completed: false };
+    // Having completed set to false will overwride the current date on next send
+    const newTodo = { ...todo, archived: false, completed: true };
     console.log('handleSendBack');
     updateTodo(newTodo);
   };

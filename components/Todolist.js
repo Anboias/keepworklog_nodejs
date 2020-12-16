@@ -8,13 +8,9 @@ const Todolist = ({ todos, updateTodo, deleteTodo }) => {
     todos
       .filter((all) => all.completed === true && all.archived === false)
       .map((todo) => {
-        console.log('this todo: ', todo);
         const newTodo = { ...todo, archived: true };
-        console.log('THE NEW todo: ', newTodo);
-
         updateTodo(newTodo);
       });
-    console.log('TODOS after update: ', todos);
   };
 
   return (
