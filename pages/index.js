@@ -21,16 +21,27 @@ import { useRequireAuth } from '../firebase/useRequireAuth';
 import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
+
   const thisYear = new Date().getFullYear();
   const thisWeek = getWeekNumber();
 
   const auth = useRequireAuth();
-  const { user, signOut } = auth;
 
-  const router = useRouter();
+  const { user, signOut } = auth;
 
   const [currentYear, setCurrentYear] = useState(thisYear);
   const [currentWeekNo, setCurrentWeekNo] = useState(thisWeek);
+
+  const [currentOrderId, setCurrentOrderId] = useState(0);
+  useEffect(() => {
+    console.log('inside useEffect');
+    if (user) {
+      setCurrentOrderId(user.latestOrderId);
+    }
+  }, [user]);
+
+  console.log('currentOrderId: ', currentOrderId);
 
   let isLoaded = false;
 
@@ -86,6 +97,7 @@ export default function Home() {
     db.collection('users')
       .doc(user.uid)
       .collection('todolist')
+      .orderBy('orderId', 'desc')
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((todo) => {
@@ -101,6 +113,23 @@ export default function Home() {
     console.log('Success on fetching the todo list.');
   };
 
+  const updateOrderId = async () => {
+    try {
+      await db
+        .collection('users')
+        .doc(user.uid)
+        .update({
+          latestOrderId: currentOrderId + 1,
+        })
+        .then(() => {
+          setCurrentOrderId(currentOrderId + 1);
+          console.log('Latest orderId updated. Now fetch the list again.');
+        });
+    } catch (error) {
+      console.log('Error on updating the latestOrderId: ' + error);
+    }
+  };
+
   const addTodoElement = async (newTodo) => {
     try {
       await db
@@ -108,9 +137,14 @@ export default function Home() {
         .doc(user.uid)
         .collection('todolist')
         .doc(uuidv4())
-        .set(newTodo)
+        .set({ ...newTodo, orderId: currentOrderId + 1 })
         .then(() => {
-          console.log('New todo added. Now fetch the list again.');
+          console.log(
+            'New todo added with orderId: ',
+            currentOrderId + 1,
+            '. Now fetch the list again.'
+          );
+          updateOrderId();
           fetchTodoElements();
         });
       console.log('Success. New todo added');

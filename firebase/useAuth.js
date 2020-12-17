@@ -44,7 +44,12 @@ const useAuthProvider = () => {
         password
       );
       auth.currentUser.sendEmailVerification();
-      return createUser({ uid: response.user.uid, email, name });
+      return createUser({
+        uid: response.user.uid,
+        email,
+        name,
+        latestOrderId: 0,
+      });
     } catch (error) {
       return { error };
     }
