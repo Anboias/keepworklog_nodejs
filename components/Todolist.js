@@ -31,8 +31,8 @@ const Todolist = ({
           <button onClick={handleArchive}>Archive all completed</button>
           <button onClick={handleOrderType}>
             {nextSortingType === 'asc'
-              ? 'Show newest first'
-              : 'Show latest first'}
+              ? 'Show latest first'
+              : 'Show newest first'}
           </button>
           {todos
             .filter((all) => all.archived === false)

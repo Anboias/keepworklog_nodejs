@@ -21,6 +21,20 @@ export const dbFunctions = () => {
   let isLoaded = false;
 
   const router = useRouter();
+
+  // useEffect(() => {
+  //   console.log('Component did mount?', user, loading);
+  //   if (!user) {
+  //     if (!loading) loading = true;
+  //     else if (loading) router.push('/login');
+  //   } else {
+  //     console.log('User not false: ', user);
+  //   }
+  // }, [loading]);
+  // useEffect(() => {
+  //   console.log('Is loading?', loading);
+  // }, [loading]);
+
   const thisYear = new Date().getFullYear();
   const thisWeek = getWeekNumber();
 
@@ -35,7 +49,6 @@ export const dbFunctions = () => {
   const [currentOrderId, setCurrentOrderId] = useState(0);
   useEffect(() => {
     if (user) {
-      console.log('SET ORDER ID', currentOrderId, user.latestOrderId);
       setCurrentOrderId(user.latestOrderId);
     }
   }, [user]);
