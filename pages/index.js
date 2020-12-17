@@ -31,6 +31,7 @@ export default function Home() {
   const { user, signOut } = auth;
 
   const [currentYear, setCurrentYear] = useState(thisYear);
+  const [sortingType, setSortingType] = useState('desc');
   const [currentWeekNo, setCurrentWeekNo] = useState(thisWeek);
 
   const [currentOrderId, setCurrentOrderId] = useState(0);
@@ -38,6 +39,7 @@ export default function Home() {
     console.log('inside useEffect');
     if (user) {
       setCurrentOrderId(user.latestOrderId);
+      setSortingType(user.sortingType);
     }
   }, [user]);
 
@@ -61,7 +63,7 @@ export default function Home() {
   useEffect(() => {
     // console.log('INDEX: ', user);
     if (user) {
-      fetchTodoElements();
+      fetchTodoElements(sortingType);
     } else {
       // console.log('INDEX ELSE', user);
       // router.push('/login');
@@ -92,12 +94,12 @@ export default function Home() {
 
   const [todos, setTodos] = useState([]);
 
-  const fetchTodoElements = async () => {
+  const fetchTodoElements = async (sortingType) => {
     const allTodos = [];
     db.collection('users')
       .doc(user.uid)
       .collection('todolist')
-      .orderBy('orderId', 'desc')
+      .orderBy('orderId', sortingType)
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((todo) => {
@@ -130,6 +132,24 @@ export default function Home() {
     }
   };
 
+  const handleSortingType = async (newSortingType) => {
+    try {
+      await db
+        .collection('users')
+        .doc(user.uid)
+        .update({
+          sortingType: newSortingType,
+        })
+        .then(() => {
+          setSortingType(newSortingType);
+          console.log('Latest sorting type updated. Now fetch the list again.');
+          fetchTodoElements(newSortingType);
+        });
+    } catch (error) {
+      console.log('Error on updating the latestOrderId: ' + error);
+    }
+  };
+
   const addTodoElement = async (newTodo) => {
     try {
       await db
@@ -145,7 +165,7 @@ export default function Home() {
             '. Now fetch the list again.'
           );
           updateOrderId();
-          fetchTodoElements();
+          fetchTodoElements(sortingType);
         });
       console.log('Success. New todo added');
     } catch (error) {
@@ -163,7 +183,7 @@ export default function Home() {
         .delete()
         .then(() => {
           console.log('Todo deleted.');
-          fetchTodoElements();
+          fetchTodoElements(sortingType);
         });
       console.log('Success. Todo deleted.');
     } catch (error) {
@@ -186,7 +206,7 @@ export default function Home() {
         })
         .then(() => {
           console.log('Todo updated. Now fetch the list again.', todo);
-          fetchTodoElements();
+          fetchTodoElements(sortingType);
         });
     } catch (error) {
       console.log('Error on updating the todo element: ' + error);
@@ -238,6 +258,8 @@ export default function Home() {
             todos={todos}
             updateTodo={updateTodo}
             deleteTodo={deleteTodo}
+            sortingType={sortingType}
+            handleSortingType={handleSortingType}
           />
           <Footer />
         </main>{' '}

@@ -3,7 +3,15 @@ import { db } from '../firebase/firebaseConfig';
 
 import TodolistElement from './TodolistElement';
 
-const Todolist = ({ todos, updateTodo, deleteTodo }) => {
+const Todolist = ({
+  todos,
+  updateTodo,
+  deleteTodo,
+  sortingType,
+  handleSortingType,
+}) => {
+  const newSortingType = sortingType === 'desc' ? 'asc' : 'desc';
+
   const handleArchive = () => {
     todos
       .filter((all) => all.completed === true && all.archived === false)
@@ -12,12 +20,16 @@ const Todolist = ({ todos, updateTodo, deleteTodo }) => {
         updateTodo(newTodo);
       });
   };
+  const handleOrderType = () => {
+    handleSortingType(newSortingType);
+  };
 
   return (
     <section id="todolist">
       <div className="container">
         <ul className="todo-list sortable">
           <button onClick={handleArchive}>Archive all done</button>
+          <button onClick={handleOrderType}>Sort {newSortingType}ending</button>
           {todos
             .filter((all) => all.archived === false)
             .map((todo, index) => {
