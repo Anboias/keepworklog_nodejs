@@ -69,6 +69,7 @@ export default function Home() {
             todos={todos}
             setTodos={setTodos}
             addTodoElement={addTodoElement}
+            sortingType={sortingType}
           />
           <Weeks
             todosArchived={todosArchived}

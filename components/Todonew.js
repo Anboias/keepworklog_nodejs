@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../firebase/useAuth';
 import { db } from '../firebase/firebaseConfig';
 
-const Todonew = ({ todos, setTodos, addTodoElement }) => {
+const Todonew = ({ todos, setTodos, addTodoElement, sortingType }) => {
   const [value, setValue] = useState('');
   const [userId, setUserId] = useState(0);
 
@@ -21,7 +21,9 @@ const Todonew = ({ todos, setTodos, addTodoElement }) => {
     newTodo.content = value;
     newTodo.archived = false;
 
-    setTodos([...todos, newTodo]);
+    setTodos(
+      sortingType === 'desc' ? [newTodo, ...todos] : [...todos, newTodo]
+    );
     setValue('');
     addTodoElement(newTodo);
     e.preventDefault();

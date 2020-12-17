@@ -33,21 +33,25 @@ export const dbFunctions = () => {
 
   // Current order id hook
   const [currentOrderId, setCurrentOrderId] = useState(0);
+  useEffect(() => {
+    if (user) {
+      console.log('SET ORDER ID', currentOrderId, user.latestOrderId);
+      setCurrentOrderId(user.latestOrderId);
+    }
+  }, [user]);
 
   // Sorting type hook
-  const [sortingType, setSortingType] = useState('desc');
+  const [sortingType, setSortingType] = useState(null);
   useEffect(() => {
     if (user) {
-      setCurrentOrderId(user.latestOrderId);
       setSortingType(user.sortingType);
     }
-  }, [sortingType]);
+  }, [user]);
 
+  // Initialize lists
   useEffect(() => {
-    if (user) {
-      if (sortingType) {
-        fetchTodoElements(sortingType);
-      }
+    if (user && sortingType) {
+      fetchTodoElements(sortingType);
       fetchTodoElementsArchived('asc');
     } else {
       // router.push('/login');
@@ -74,7 +78,6 @@ export const dbFunctions = () => {
   const [todosArchived, setTodosArchived] = useState(todos);
 
   const fetchTodoElements = async (sortingType) => {
-    console.log('sortingType. fetchTODO:', sortingType);
     const allTodos = [];
     db.collection('users')
       .doc(user.uid)
@@ -96,8 +99,6 @@ export const dbFunctions = () => {
   };
 
   const fetchTodoElementsArchived = async () => {
-    console.log('sortingType. fetchTODO Archived:', sortingType);
-
     const allTodos = [];
     db.collection('users')
       .doc(user.uid)
@@ -115,7 +116,7 @@ export const dbFunctions = () => {
       .catch((error) => {
         console.log('Error: ', error);
       });
-    console.log('Success on fetching the todo list.');
+    console.log('Success on fetching the archived todo list.');
   };
 
   const updateOrderId = async () => {
@@ -128,7 +129,7 @@ export const dbFunctions = () => {
         })
         .then(() => {
           setCurrentOrderId(currentOrderId + 1);
-          console.log('Latest orderId updated. Now fetch the list again.');
+          console.log('Latest orderId updated.');
         });
     } catch (error) {
       console.log('Error on updating the latestOrderId: ' + error);
