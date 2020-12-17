@@ -21,11 +21,13 @@ const Todonew = ({ todos, setTodos, addTodoElement, sortingType }) => {
     newTodo.content = value;
     newTodo.archived = false;
 
-    setTodos(
-      sortingType === 'desc' ? [newTodo, ...todos] : [...todos, newTodo]
-    );
+    if (value) {
+      setTodos(
+        sortingType === 'desc' ? [newTodo, ...todos] : [...todos, newTodo]
+      );
+      addTodoElement(newTodo);
+    }
     setValue('');
-    addTodoElement(newTodo);
     e.preventDefault();
 
     // setTodos(oldTodos => [...oldTodos, e.target.value]);
