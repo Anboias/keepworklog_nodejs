@@ -10,7 +10,7 @@ const Todolist = ({
   sortingType,
   handleSortingType,
 }) => {
-  const newSortingType = sortingType === 'desc' ? 'asc' : 'desc';
+  const nextSortingType = sortingType === 'desc' ? 'asc' : 'desc';
 
   const handleArchive = () => {
     todos
@@ -21,15 +21,19 @@ const Todolist = ({
       });
   };
   const handleOrderType = () => {
-    handleSortingType(newSortingType);
+    handleSortingType(nextSortingType);
   };
 
   return (
     <section id="todolist">
       <div className="container">
         <ul className="todo-list sortable">
-          <button onClick={handleArchive}>Archive all done</button>
-          <button onClick={handleOrderType}>Sort {newSortingType}ending</button>
+          <button onClick={handleArchive}>Archive all completed</button>
+          <button onClick={handleOrderType}>
+            {nextSortingType === 'asc'
+              ? 'Show newest first'
+              : 'Show latest first'}
+          </button>
           {todos
             .filter((all) => all.archived === false)
             .map((todo, index) => {
