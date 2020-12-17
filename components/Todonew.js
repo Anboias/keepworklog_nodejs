@@ -8,16 +8,12 @@ const Todonew = ({ todos, setTodos, addTodoElement }) => {
 
   const auth = useAuth();
 
-  const { testValue, setTestValue } = auth;
-
   useEffect(() => {
     // Update the document title using the browser API
     // console.log('Auth: ', auth.user);
   }, [userId]);
 
   const handleClick = (e) => {
-    setTestValue(testValue + 1);
-
     let newTodo = {};
     newTodo.orderId = '20';
     newTodo.completed = value.includes('done') ? true : false;

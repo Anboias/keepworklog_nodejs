@@ -23,9 +23,6 @@ export const useAuth = () => {
 // Provider hook that creates an auth object and handles its state
 const useAuthProvider = () => {
   const [user, setUser] = useState(null);
-  const [testValue, setTestValue] = useState(1);
-
-  // console.log('Inside useAuth', user);
 
   const createUser = async (user) => {
     try {
@@ -59,27 +56,20 @@ const useAuthProvider = () => {
     try {
       const response = await auth.signInWithEmailAndPassword(email, password);
       setUser(response.user);
-      getUserAdditionalData(user);
+      user && getUserAdditionalData(user);
       return response.user;
     } catch (error) {
       return { error };
     }
   };
-  const getUserAdditionalData = (user) => {
-    return db
-      .collection('users')
-      .doc(user.uid)
-      .get()
-      .then((userData) => {
-        if (userData.data()) {
-          setUser(userData.data());
-        }
-      });
+  const getUserAdditionalData = async (user) => {
+    const userData = await db.collection('users').doc(user.uid).get();
+    if (userData.data()) {
+      setUser(userData.data());
+    }
   };
 
   const handleAuthStateChanged = (user) => {
-    // console.log('Inside 1st useEffect. handleAuthStateChanged', user);
-
     setUser(user);
     if (user) {
       getUserAdditionalData(user);
@@ -88,15 +78,11 @@ const useAuthProvider = () => {
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged(handleAuthStateChanged);
-
-    // console.log('Inside 1st useEffect', user);
-
     return () => unsub();
   }, []);
 
   useEffect(() => {
     if (user?.uid) {
-      // Subscribe to user document on mount
       const unsubscribe = db
         .collection('users')
         .doc(user.uid)
@@ -122,7 +108,5 @@ const useAuthProvider = () => {
     getUserAdditionalData,
     signOut,
     sendPasswordResetEmail,
-    testValue,
-    setTestValue,
   };
 };
