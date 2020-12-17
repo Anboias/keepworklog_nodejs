@@ -246,5 +246,6 @@ export const dbFunctions = () => {
     handleSortingType,
     getWeekNumbers,
     getDateRangeOfWeek,
+    isLoaded,
   };
 };
