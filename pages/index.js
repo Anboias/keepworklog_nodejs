@@ -64,6 +64,7 @@ export default function Home() {
     // console.log('INDEX: ', user);
     if (user) {
       fetchTodoElements(sortingType);
+      fetchTodoElementsArchived('asc');
     } else {
       // console.log('INDEX ELSE', user);
       // router.push('/login');
@@ -93,6 +94,7 @@ export default function Home() {
   }, [user, loading]);
 
   const [todos, setTodos] = useState([]);
+  const [todosArchived, setTodosArchived] = useState(todos);
 
   const fetchTodoElements = async (sortingType) => {
     const allTodos = [];
@@ -108,6 +110,27 @@ export default function Home() {
           allTodos.push(appObj);
         });
         setTodos(allTodos);
+      })
+      .catch((error) => {
+        console.log('Error: ', error);
+      });
+    console.log('Success on fetching the todo list.');
+  };
+
+  const fetchTodoElementsArchived = async (sortingType) => {
+    const allTodos = [];
+    db.collection('users')
+      .doc(user.uid)
+      .collection('todolist')
+      .orderBy('orderId', sortingType)
+      .get()
+      .then((snapshot) => {
+        snapshot.docs.forEach((todo) => {
+          let currentID = todo.id;
+          let appObj = { ...todo.data(), ['id']: currentID };
+          allTodos.push(appObj);
+        });
+        setTodosArchived(allTodos);
       })
       .catch((error) => {
         console.log('Error: ', error);
@@ -207,6 +230,7 @@ export default function Home() {
         .then(() => {
           console.log('Todo updated. Now fetch the list again.', todo);
           fetchTodoElements(sortingType);
+          fetchTodoElementsArchived('asc');
         });
     } catch (error) {
       console.log('Error on updating the todo element: ' + error);
@@ -249,7 +273,7 @@ export default function Home() {
             addTodoElement={addTodoElement}
           />
           <Weeks
-            todos={todos}
+            todosArchived={todosArchived}
             updateTodo={updateTodo}
             currentWeekNo={currentWeekNo}
             year={currentYear}
