@@ -12,7 +12,11 @@ const Weekday = ({ todosArchived, day, currentWeek, updateTodo }) => {
       <ul className="weekday-list sortable">
         <>
           {todosArchived
-            .filter((all) => all.archived === true && all.date === currentDate)
+            .filter(
+              (all) =>
+                all.archived === true &&
+                all.date.substring(0, 8) === currentDate
+            )
             .map((todo, index) => {
               return (
                 <TodolistElement

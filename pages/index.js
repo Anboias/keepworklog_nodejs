@@ -122,7 +122,7 @@ export default function Home() {
     db.collection('users')
       .doc(user.uid)
       .collection('todolist')
-      .orderBy('orderId', sortingType)
+      .orderBy('date', sortingType)
       .get()
       .then((snapshot) => {
         snapshot.docs.forEach((todo) => {
