@@ -28,12 +28,14 @@ const Todolist = ({
     <section id="todolist">
       <div className="container">
         <ul className="todo-list sortable">
-          <button onClick={handleArchive}>Archive all completed</button>
-          <button onClick={handleOrderType}>
-            {nextSortingType === 'asc'
-              ? 'Show latest first'
-              : 'Show newest first'}
-          </button>
+          <li className="item-first">
+            <button onClick={handleArchive}>Archive all completed</button>
+            <button onClick={handleOrderType}>
+              {nextSortingType === 'asc'
+                ? 'Show latest first'
+                : 'Show newest first'}
+            </button>
+          </li>
           {todos
             .filter((all) => all.archived === false)
             .map((todo, index) => {

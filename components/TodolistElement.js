@@ -35,7 +35,7 @@ const TodolistElement = ({ todo, updateTodo, deleteTodo }) => {
 
   return (
     <li key={todo.id} className="draggable movable-item item">
-      <div className={`todo-container ${todo.completed && 'todo-done'}`}>
+      <div className={`todo-container ${todo.completed ? ' todo-done' : ''}`}>
         {todo.archived ? (
           <i className="fas fa-check-circle" onClick={handleSendBack}></i>
         ) : (
