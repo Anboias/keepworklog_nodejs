@@ -23,6 +23,11 @@ const LoginForm = () => {
     });
   };
 
+  const handleLoginWithGoogle = async () => {
+    const user = await auth.signInWithGoogle().then(router.push('/'));
+    console.log(user);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="inputs-container">
@@ -83,14 +88,17 @@ const LoginForm = () => {
             {/* <Button title="Login" type="submit" isLoading={isLoading} /> */}
           </span>
         </div>
-        <div class="google-btn inline-block" onClick={auth.signInWithGoogle}>
-          <div class="google-icon-wrapper">
+        <div
+          className="google-btn inline-block"
+          onClick={handleLoginWithGoogle}
+        >
+          <div className="google-icon-wrapper">
             <img
-              class="google-icon"
+              className="google-icon"
               src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
             />
           </div>
-          <p class="btn-text">
+          <p className="btn-text">
             <b>Sign in with google</b>
           </p>
         </div>

@@ -102,15 +102,24 @@ const useAuthProvider = () => {
     return response;
   };
 
-  const signInWithGoogle = () => {
-    auth
-      .signInWithPopup(googleProvider)
-      .then((res) => {
-        console.log(res.user);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+  const signInWithGoogle = async () => {
+    try {
+      const response = await auth.signInWithPopup(googleProvider);
+      setUser(response.user);
+      user && getUserAdditionalData(user);
+      return response.user;
+    } catch (error) {
+      return { error };
+    }
+
+    // auth
+    //   .signInWithPopup(googleProvider)
+    //   .then((res) => {
+    //     console.log(res.user);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.message);
+    //   });
   };
 
   return {

@@ -26,6 +26,10 @@ Date.prototype.getWeekPrototype = function (numOfdaysPastSinceLastMonday) {
 // Returns the current week number
 Date.prototype.getWeekNumberPrototype = function () {
   var onejan = new Date(this.getFullYear(), 0, 1);
+  console.log(
+    'WEEK NUMBER: ',
+    Math.ceil(((this - onejan) / 86400000 + onejan.getDay() + 1) / 7)
+  );
   return Math.ceil(((this - onejan) / 86400000 + onejan.getDay() + 1) / 7);
 };
 
