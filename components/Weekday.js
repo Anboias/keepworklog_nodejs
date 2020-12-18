@@ -2,7 +2,6 @@ import TodolistElement from './TodolistElement';
 
 const Weekday = ({ todosArchived, day, currentWeek, updateTodo }) => {
   let currentDate = currentWeek.year + currentWeek.month + currentWeek.day;
-  console.log('inside ', currentWeek);
 
   return (
     <div className="weekday">
