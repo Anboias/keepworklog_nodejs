@@ -6,7 +6,7 @@ import {
   ReactNode,
 } from 'react';
 
-import { auth, db } from './firebaseConfig';
+import { auth, db, googleProvider } from './firebaseConfig';
 
 const authContext = createContext({ user: {} });
 
@@ -62,6 +62,7 @@ const useAuthProvider = () => {
       return { error };
     }
   };
+
   const getUserAdditionalData = async (user) => {
     const userData = await db.collection('users').doc(user.uid).get();
     if (userData.data()) {
@@ -101,6 +102,17 @@ const useAuthProvider = () => {
     return response;
   };
 
+  const signInWithGoogle = () => {
+    auth
+      .signInWithPopup(googleProvider)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return {
     user,
     signUp,
@@ -108,5 +120,6 @@ const useAuthProvider = () => {
     getUserAdditionalData,
     signOut,
     sendPasswordResetEmail,
+    signInWithGoogle,
   };
 };

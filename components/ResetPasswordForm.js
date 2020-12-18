@@ -40,7 +40,9 @@ const ResetPasswordForm = () => {
       </div>
       <div className="button-container">
         <span>
-          <button type="submit">Send reset link</button>
+          <button type="submit" className="auth-button">
+            Send reset link
+          </button>
           {/* <Button title="Send reset link" type="submit" isLoading={isLoading} /> */}
         </span>
       </div>

@@ -81,7 +81,9 @@ const SignUpForm = () => {
       </div>
       <div className="button-container">
         <span>
-          <button type="submit">Sign up </button>
+          <button type="submit" className="auth-button">
+            Sign up{' '}
+          </button>
           {/* <Button title="Sign up" type="submit" isLoading={isLoading} /> */}
         </span>
       </div>

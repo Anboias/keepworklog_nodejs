@@ -74,12 +74,28 @@ const LoginForm = () => {
         </div>
       </div>
 
-      <div className="button-container">
-        <span>
-          <button type="submit">Log in</button>
-          {/* <Button title="Login" type="submit" isLoading={isLoading} /> */}
-        </span>
+      <div className="hold-inline">
+        <div className="button-container inline-block">
+          <span>
+            <button type="submit" className="auth-button">
+              Log in
+            </button>
+            {/* <Button title="Login" type="submit" isLoading={isLoading} /> */}
+          </span>
+        </div>
+        <div class="google-btn inline-block" onClick={auth.signInWithGoogle}>
+          <div class="google-icon-wrapper">
+            <img
+              class="google-icon"
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            />
+          </div>
+          <p class="btn-text">
+            <b>Sign in with google</b>
+          </p>
+        </div>
       </div>
+
       {error?.message && <div className="errors">{error.message}</div>}
     </form>
   );

@@ -1,5 +1,16 @@
 @import './variables.scss';
 
+
+.inline-block {
+    display: inline-block;
+}
+
+.hold-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .authentication {
     box-sizing: border-box;
     margin: 0;
@@ -41,6 +52,7 @@
         form {
 
             .inputs-container {
+
                 padding: 40px 0;
 
                 label {
@@ -70,19 +82,20 @@
             }
 
             .button-container {
-                padding: 10px 0;
+                // padding: 10px 0;
 
                 button {
                     border: none;
                     outline: none;
                     width: 200px;
-                    padding: 15px 0;
+                    height: 40px;
+                    // padding: 15px 0;
                     color: #fff;
                     font-size: 16px;
                     letter-spacing: 1px;
                     background: $navBgColor;
                     margin: auto;
-                    border-radius: 5px;
+                    border-radius: 2px;
                     cursor: pointer;
 
                     &:hover {
@@ -122,54 +135,6 @@
             }
         }
 
-
     }
 
-
-
-
-    // .btnContainer {
-    //     width: 100%;
-    //     padding: 24px 0;
-
-    //     button {
-
-    //         border: none;
-    //         outline: none;
-    //         width: 100%;
-    //         padding: 15px 0;
-    //         color: #fff;
-    //         font-size: 16px;
-    //         letter-spacing: 1px;
-    //         background: $navBgColor;
-    //         cursor: pointer;
-    //     }
-
-    //     p {
-    //         margin: 14px 0 0 0;
-    //         text-align: right;
-    //         color: #fff;
-
-    //         span {
-    //             color: yellow;
-    //             font-weight: 500;
-    //             letter-spacing: 0.5px;
-    //             margin-left: 5px;
-    //             cursor: pointer;
-    //             transition: all 400ms ease-in-out;
-
-    //             &:hover {
-    //                 color: red;
-
-    //             }
-    //         }
-    //     }
-    // }
-
-    // .errorMsg {
-    //     color: red;
-    //     font-size: 16px;
-    // }
-
-    // }
 }
