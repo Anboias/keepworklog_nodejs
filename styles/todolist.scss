@@ -29,7 +29,8 @@
           background-color: white;
           border: 1px solid rgba(17, 47, 95, 0.3);
           border-radius: 4px;
-          padding: 7px;
+          padding: 12px;
+          margin-right: 10px;
           // margin: 10px 10px 20px auto;
 
 
@@ -111,6 +112,7 @@
             font-size: 15px;
             line-height: 130%;
             z-index: 99;
+            font-weight: 500;
           }
 
           /* Hide elements from the TODO-list moved here from the Week column */
@@ -120,9 +122,10 @@
 
         }
 
+        // TODOs marked as completed
         .todo-done {
           transition: border-color color font-weight font-style background-color 2s ease;
-          border-color: rgba(39, 188, 0, 0.3);
+          border-color: rgb(196, 224, 188);
           // border-color: $green;
           color: $gray;
           font-weight: 200;
@@ -133,7 +136,7 @@
           p {
             transition: all 2s ease-in;
             font-size: 12px;
-            padding: 2px;
+            padding: 0px;
           }
 
           .fa-ellipsis-v {

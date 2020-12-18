@@ -23,7 +23,12 @@ const TodolistElement = ({ todo, updateTodo, deleteTodo }) => {
 
   const handleDelete = () => {
     console.log('Handle delete');
-    deleteTodo(todo);
+
+    if (window.confirm('Are you sure you wish to delete this item?')) {
+      deleteTodo(todo);
+    } else {
+      console.log('Delete canceled');
+    }
   };
 
   const handleSendBack = (e) => {

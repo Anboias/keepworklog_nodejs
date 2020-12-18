@@ -22,6 +22,7 @@ const Weeks = ({ todosArchived, currentWeekNo, year, updateTodo }) => {
       <div className="container">
         {days.map((day, index) => (
           <Weekday
+            key={index}
             day={day}
             updateTodo={updateTodo}
             todosArchived={todosArchived}

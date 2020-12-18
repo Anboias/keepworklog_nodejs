@@ -17,9 +17,10 @@
                 position: relative;
                 font-size: 14px;
                 border-bottom: 1px solid $leftFontColor;
-                // text-transform: uppercase;
+                text-transform: uppercase;
                 padding-bottom: 0;
                 margin-bottom: 3px;
+                font-weight: 500;
             }
 
             .fa-copy {
