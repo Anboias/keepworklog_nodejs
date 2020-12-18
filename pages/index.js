@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Worklog from '../components/Worklog';
@@ -38,7 +39,15 @@ export default function Home() {
   return user?.name ? (
     <>
       <Head>
-        <title> Keep Worklog </title> <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="Simplest todo app. Designed to easily archive and retrieve your tasks. Keep track of the work done."
+        />
+        <title>
+          Keep track of your work. Easily create and archive your task.
+        </title>
+
+        <link rel="icon" href="/favicon.ico" />
         {/* <!-- Google font - Montserrat --> */}
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link

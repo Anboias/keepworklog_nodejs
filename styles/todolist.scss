@@ -21,7 +21,7 @@
       @include draggable;
 
       .item-first {
-        margin: 25px 0;
+        margin: 15px 0 30px 0;
 
         button {
           @include box-style;
@@ -55,9 +55,8 @@
           box-shadow: 5px 5px 5px rgba(17, 47, 95, 0.5);
         }
 
-
+        div,
         .todo-container {
-          transition: border-left color font-weight font-style background-color 2s ease;
 
           position: relative;
           border-left: 10px solid $navBgColor;
@@ -70,12 +69,19 @@
           .fa-trash-alt,
           .fa-pencil-alt {
             position: absolute;
+            cursor: pointer;
             right: 4px;
             top: 4px;
             color: $gray;
-            cursor: pointer;
             padding: 2px;
+          }
 
+          .fa-trash-alt {
+            &:hover {
+              color: $rightFontColor;
+              transform: scale(1.2);
+              color: rgb(255, 29, 29);
+            }
           }
 
           .fa-ellipsis-v {
@@ -86,18 +92,8 @@
             color: $leftBgColor;
           }
 
-          .fa-trash-alt {
-
-            &:hover {
-              color: $rightFontColor;
-              transform: scale(1.2);
-              color: rgb(255, 29, 29);
-            }
-          }
-
           .fa-pencil-alt {
             display: none;
-
             top: auto;
             bottom: 4px;
 
@@ -115,7 +111,6 @@
             font-size: 15px;
             line-height: 130%;
             z-index: 99;
-
           }
 
           /* Hide elements from the TODO-list moved here from the Week column */
@@ -133,14 +128,12 @@
           font-weight: 200;
           font-style: italic;
           background-color: rgba(204, 207, 204, 0.1);
-          // background-color: rgba(39, 188, 0, 1);
 
+          // background-color: rgba(39, 188, 0, 1);
           p {
             transition: all 2s ease-in;
-
             font-size: 12px;
             padding: 2px;
-
           }
 
           .fa-ellipsis-v {
