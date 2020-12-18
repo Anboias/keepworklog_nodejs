@@ -73,6 +73,7 @@
           }
 
           .fa-ellipsis-v {
+            display: none;
             left: 4px;
             top: auto;
             bottom: auto;
@@ -100,7 +101,7 @@
 
           p {
             cursor: text;
-            margin: 10px 60px 10px 20px;
+            margin: 10px 60px 10px 10px;
             padding: 2px;
             font-size: 16px;
             line-height: 130%;
@@ -116,10 +117,21 @@
         }
 
         .todo-done {
-          border-color: $green;
+          transition: all 2s ease;
+          border-color: rgba(39, 188, 0, 0.3);
+          // border-color: $green;
           color: $gray;
           font-weight: 200;
           font-style: italic;
+          background-color: rgba(204, 207, 204, 0.1);
+          // background-color: rgba(39, 188, 0, 1);
+
+          p {
+            transition: all 4s ease-in;
+
+            font-size: 12px;
+
+          }
 
           .fa-ellipsis-v {
             color: $gray;

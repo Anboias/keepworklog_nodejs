@@ -46,7 +46,9 @@
 
 input {
     &:checked+.slider {
-        background-color: $green;
+        // background-color: $green;
+        background-color: rgba(39, 188, 0, 0.3);
+
     }
 
     &:focus+.slider {
