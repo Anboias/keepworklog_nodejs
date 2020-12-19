@@ -20,15 +20,22 @@ const Weeks = ({ todosArchived, currentWeekNo, year, updateTodo }) => {
   return (
     <section id="weeks">
       <div className="container">
-        {days.map((day, index) => (
-          <Weekday
-            key={index}
-            day={day}
-            updateTodo={updateTodo}
-            todosArchived={todosArchived}
-            currentWeek={currentWeek[index]}
-          />
-        ))}
+        <div className="buttons">
+          {/* hidden with display none */}
+          <button onClick={null}>Show time completed</button>
+          <button onClick={null}>Copy to clipboard</button>
+        </div>
+        <div className="weekdays">
+          {days.map((day, index) => (
+            <Weekday
+              key={index}
+              day={day}
+              updateTodo={updateTodo}
+              todosArchived={todosArchived}
+              currentWeek={currentWeek[index]}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
