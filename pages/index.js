@@ -7,7 +7,6 @@ import Todonew from '../components/Todonew';
 import Weeks from '../components/Weeks';
 import Todolist from '../components/Todolist';
 import Footer from '../components/Footer';
-import Button from '../components/Button';
 
 import 'firebase/auth';
 

@@ -25,26 +25,17 @@ export const dbFunctions = () => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log('LOADING 1: ', loading, isLoaded, isLoggedIn);
-
     if (!isLoaded) {
       if (!loading) {
         setTimeout(() => {
-          console.log('Wait 1 seconds.');
           setLoading(true);
         }, 1000);
       } else {
-        console.log('Into Else. User null.');
         setIsLoaded(true);
         setLoading(false);
       }
     }
-    console.log('LOADING 2: ', loading, isLoaded, isLoggedIn);
   }, [loading]);
-
-  // useEffect(() => {
-  //   console.log('USER: ', loading, isLoaded, isLoggedIn);
-  // }, [user]);
 
   useEffect(() => {
     if (isLoaded) {
@@ -54,8 +45,15 @@ export const dbFunctions = () => {
         setIsLoggedIn(true);
       }
     }
-    console.log('No user. Push /login.', loading, isLoaded, isLoggedIn);
-  }, [isLoaded]);
+  }, [isLoaded, user]);
+
+  useEffect(() => {
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [user]);
 
   // useEffect(() => {
   //   console.log('Component did mount?', user, loading);
