@@ -7,6 +7,7 @@ import Todonew from '../components/Todonew';
 import Weeks from '../components/Weeks';
 import Todolist from '../components/Todolist';
 import Footer from '../components/Footer';
+import Button from '../components/Button';
 
 import 'firebase/auth';
 
@@ -34,9 +35,11 @@ export default function Home() {
     handleSortingType,
     getWeekNumbers,
     getDateRangeOfWeek,
+    isLoggedIn,
+    loading,
   } = dbFunctions();
 
-  return user?.name ? (
+  return isLoggedIn ? (
     <>
       <Head>
         <meta
@@ -44,7 +47,7 @@ export default function Home() {
           content="Simplest todo app. Designed to easily archive and retrieve your tasks. Keep track of the work done."
         />
         <title>
-          Keep track of your work. Easily create and archive your task.
+          Keep track of your work. Easily create and archive your tasks.
         </title>
 
         <link rel="icon" href="/favicon.ico" />
@@ -97,9 +100,9 @@ export default function Home() {
         </main>{' '}
       </div>{' '}
     </>
-  ) : (
-    <>
-      <Navbar handleLogout={null} name={' please authenticate.'} />
-    </>
-  );
+  ) : null;
+
+  // <But>
+  //   <Navbar handleLogout={null} name={' please authenticate.'} />
+  // </Button>
 }

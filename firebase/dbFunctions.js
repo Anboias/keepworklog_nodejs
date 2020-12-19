@@ -15,12 +15,47 @@ import getDateRangeOfWeek, {
 
 export const dbFunctions = () => {
   const auth = useRequireAuth();
+
   const { user, signOut } = auth;
 
-  let loading = false;
-  let isLoaded = false;
+  const [loading, setLoading] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    console.log('LOADING 1: ', loading, isLoaded, isLoggedIn);
+
+    if (!isLoaded) {
+      if (!loading) {
+        setTimeout(() => {
+          console.log('Wait 1 seconds.');
+          setLoading(true);
+        }, 1000);
+      } else {
+        console.log('Into Else. User null.');
+        setIsLoaded(true);
+        setLoading(false);
+      }
+    }
+    console.log('LOADING 2: ', loading, isLoaded, isLoggedIn);
+  }, [loading]);
+
+  // useEffect(() => {
+  //   console.log('USER: ', loading, isLoaded, isLoggedIn);
+  // }, [user]);
+
+  useEffect(() => {
+    if (isLoaded) {
+      if (!user) {
+        router.push('/login');
+      } else {
+        setIsLoggedIn(true);
+      }
+    }
+    console.log('No user. Push /login.', loading, isLoaded, isLoggedIn);
+  }, [isLoaded]);
 
   // useEffect(() => {
   //   console.log('Component did mount?', user, loading);
@@ -72,20 +107,20 @@ export const dbFunctions = () => {
   }, [user, sortingType]);
 
   // IsLoading hook
-  useEffect(() => {
-    isLoaded = false;
-    if (!(user || loading)) {
-    } else {
-      if (!user?.name) {
-        if (!isLoaded) {
-          isLoaded = true;
-        } else {
-          isLoaded = false;
-          // router.push('/login');
-        }
-      }
-    }
-  }, [user, loading]);
+  // useEffect(() => {
+  //   isLoaded = false;
+  //   if (!(user || loading)) {
+  //   } else {
+  //     if (!user?.name) {
+  //       if (!isLoaded) {
+  //         isLoaded = true;
+  //       } else {
+  //         isLoaded = false;
+  //         // router.push('/login');
+  //       }
+  //     }
+  //   }
+  // }, [user, loading]);
 
   const [todos, setTodos] = useState([]);
   const [todosArchived, setTodosArchived] = useState(todos);
@@ -260,5 +295,7 @@ export const dbFunctions = () => {
     getWeekNumbers,
     getDateRangeOfWeek,
     isLoaded,
+    loading,
+    isLoggedIn,
   };
 };
