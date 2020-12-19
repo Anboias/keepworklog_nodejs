@@ -6,9 +6,11 @@ import { getCurrentDate } from '../utils/getCurrentDate';
 const TodolistElement = ({ todo, updateTodo, deleteTodo }) => {
   const [value, setValue] = useState('');
   const [editable, setEdit] = useState(false);
-  const archivedDate =
-    todo.archived &&
-    '[' + todo.date.substring(8, 10) + ':' + todo.date.substring(10, 12) + ']';
+
+  const archivedDate = null;
+  // const archivedDate =
+  //   todo.archived &&
+  //   '[' + todo.date.substring(8, 10) + ':' + todo.date.substring(10, 12) + ']';
 
   const handleEdit = (e) => {
     console.log('Edit not implemented.');

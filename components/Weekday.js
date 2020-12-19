@@ -1,11 +1,14 @@
 import TodolistElement from './TodolistElement';
+import getMonthName from '../utils/getMonthName';
 
 const Weekday = ({ todosArchived, day, currentWeek, updateTodo }) => {
   let currentDate = currentWeek.year + currentWeek.month + currentWeek.day;
 
   return (
     <div className="weekday">
-      <p className="day">{day + ', ' + currentWeek.day}</p>
+      <p className="day">
+        {day + ', ' + currentWeek.day + ' ' + getMonthName(currentWeek.month)}
+      </p>
       <i className="far fa-copy"></i>
 
       <ul className="weekday-list sortable">

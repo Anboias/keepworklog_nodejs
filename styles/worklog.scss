@@ -18,6 +18,7 @@
         h2,
         #allyears {
             font-size: 20px;
+            letter-spacing: 0.145em;
             letter-spacing: 0.345em;
             align-self: center;
             text-align: center;
@@ -31,7 +32,7 @@
             padding: 7px;
             border-style: none;
             border-radius: 5px;
-            // font-size: 20px;
+            font-size: 16px;
 
             &:hover {
                 transform: scale(1.05);
