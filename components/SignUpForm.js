@@ -1,6 +1,4 @@
 import { useForm } from 'react-hook-form';
-import { auth, db } from '../firebase/firebaseConfig';
-import Button from './Button';
 import { useAuth } from '../firebase/useAuth';
 import { useRouter } from 'next/router';
 
@@ -23,21 +21,23 @@ const SignUpForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-      <div className="inputs-container">
-        <div>
+      <div className="form-container">
+        <div className="input-form">
           <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            autocomplete="false"
-            ref={register({ required: 'Please enter an name' })}
-          />
-          {errors.password && (
-            <div className="errors">{errors.password.message}</div>
-          )}
+          <div>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              autocomplete="false"
+              ref={register({ required: 'Please enter an name' })}
+            />
+            {errors.password && (
+              <div className="errors">{errors.password.message}</div>
+            )}
+          </div>
         </div>
-        <div>
+        <div className="input-form">
           <label htmlFor="email">Email address</label>
           <div>
             <input
@@ -58,7 +58,7 @@ const SignUpForm = () => {
             )}
           </div>
         </div>
-        <div>
+        <div className="input-form">
           <label htmlFor="password">Password</label>
           <div>
             <input
@@ -79,14 +79,17 @@ const SignUpForm = () => {
           </div>
         </div>
       </div>
-      <div className="button-container">
-        <span>
-          <button type="submit" className="auth-button">
-            Sign up{' '}
-          </button>
-          {/* <Button title="Sign up" type="submit" isLoading={isLoading} /> */}
-        </span>
+      <div className="buttons">
+        <div className="button">
+          <span>
+            <button type="submit" className="auth-button">
+              Sign up
+            </button>
+            {/* <Button title="Sign up" type="submit" isLoading={isLoading} /> */}
+          </span>
+        </div>
       </div>
+      <div></div>
     </form>
   );
 };

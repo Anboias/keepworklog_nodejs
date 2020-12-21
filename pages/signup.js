@@ -1,22 +1,20 @@
-import Link from 'next/link';
+import AuthPage from '../components/AuthPage';
 import SignUpForm from '../components/SignUpForm';
+import Link from 'next/link';
 
 const SignUpPage = () => {
   return (
-    <section className="authentication">
-      <div className="container">
-        <h2 className="title">Sign up</h2>
-        <SignUpForm />
-        <div>
-          <p>
-            {'Already have an account? '}
-            <Link href="/login">
-              <a href="#">Login</a>
-            </Link>
-          </p>
-        </div>
+    <AuthPage title="Register">
+      <SignUpForm />
+      <div className="bottom-text">
+        <p>
+          {'Already have an account? '}
+          <Link href="/login">
+            <a href="#">Login</a>
+          </Link>
+        </p>
       </div>
-    </section>
+    </AuthPage>
   );
 };
 export default SignUpPage;

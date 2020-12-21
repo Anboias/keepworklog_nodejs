@@ -5,8 +5,6 @@ import { useState } from 'react';
 
 import Link from 'next/link';
 
-import Button from './Button';
-
 const LoginForm = () => {
   const auth = useAuth();
   const router = useRouter();
@@ -30,9 +28,8 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="inputs-container">
-        <div>
-          {' '}
+      <div className="form-container">
+        <div className="input-form">
           <label htmlFor="email">Email address</label>
           <div>
             <input
@@ -52,7 +49,7 @@ const LoginForm = () => {
             )}
           </div>
         </div>
-        <div>
+        <div className="input-form">
           <label htmlFor="password">Password</label>
           <div>
             <input
@@ -79,8 +76,8 @@ const LoginForm = () => {
         </div>
       </div>
 
-      <div className="hold-inline">
-        <div className="button-container inline-block">
+      <div className="buttons">
+        <div className="button">
           <span>
             <button type="submit" className="auth-button">
               Log in
@@ -88,14 +85,11 @@ const LoginForm = () => {
             {/* <Button title="Login" type="submit" isLoading={isLoading} /> */}
           </span>
         </div>
-        <div
-          className="google-btn inline-block"
-          onClick={handleLoginWithGoogle}
-        >
-          <div className="google-icon-wrapper">
+        <div className="button">
+          <div onClick={handleLoginWithGoogle}>
             <img
               className="google-icon"
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              // src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
             />
           </div>
           <p className="btn-text">
@@ -103,7 +97,6 @@ const LoginForm = () => {
           </p>
         </div>
       </div>
-
       {error?.message && <div className="errors">{error.message}</div>}
     </form>
   );

@@ -16,8 +16,8 @@ const ResetPasswordForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="inputs-container">
-        <div>
+      <div className="form-container">
+        <div className="input-form">
           <label htmlFor="email">Email address </label>
           <div>
             <input
@@ -38,13 +38,15 @@ const ResetPasswordForm = () => {
           </div>
         </div>
       </div>
-      <div className="button-container">
-        <span>
-          <button type="submit" className="auth-button">
-            Send reset link
-          </button>
-          {/* <Button title="Send reset link" type="submit" isLoading={isLoading} /> */}
-        </span>
+      <div className="buttons">
+        <div className="button">
+          <span>
+            <button type="submit" className="auth-button">
+              Send reset link
+            </button>
+            {/* <Button title="Send reset link" type="submit" isLoading={isLoading} /> */}
+          </span>
+        </div>
       </div>
     </form>
   );

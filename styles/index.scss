@@ -18,6 +18,10 @@ body {
     font-size: $fontSizeDefault;
 }
 
+#__next {
+    height: 100%;
+}
+
 /* IMPORTS */
 @import './navbar.scss';
 @import './main.scss';
@@ -28,4 +32,4 @@ body {
 @import './footer.scss';
 @import './elements/draggables.scss';
 @import './authentication.scss';
-@import './elements/loginWithGoogle.scss'
+// @import './elements/loginWithGoogle.scss'

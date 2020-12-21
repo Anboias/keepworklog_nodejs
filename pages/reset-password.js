@@ -1,22 +1,20 @@
-import Link from 'next/link';
+import AuthPage from '../components/AuthPage';
 import ResetPasswordForm from '../components/ResetPasswordForm';
+import Link from 'next/link';
 
 const ResetPasswordPage = () => {
   return (
-    <section className="authentication">
-      <div className="container">
-        <h2 className="title">Reset password</h2>
-        <ResetPasswordForm />
-        <div>
-          <p>
-            {"Didn't forgot? "}
-            <Link href="/login">
-              <a href="#">Login</a>
-            </Link>
-          </p>
-        </div>
+    <AuthPage title="Reset Password">
+      <ResetPasswordForm />
+      <div className="bottom-text">
+        <p>
+          {"Didn't forgot? "}
+          <Link href="/login">
+            <a href="#">Login</a>
+          </Link>
+        </p>
       </div>
-    </section>
+    </AuthPage>
   );
 };
 export default ResetPasswordPage;
