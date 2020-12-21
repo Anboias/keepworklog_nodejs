@@ -38,12 +38,12 @@ const SignUpForm = () => {
             autoComplete="false"
             className="input-text"
             onChange={handleChange}
-            ref={register({ required: 'Please enter an name' })}
+            ref={register({ required: 'Please enter a name' })}
           />
           <span className="floating-label">Username</span>
 
           {errors.password && (
-            <div className="errors">{errors.password.message}</div>
+            <div className="errors">{errors.name.message}</div>
           )}
         </div>
         <div className="input-form">
