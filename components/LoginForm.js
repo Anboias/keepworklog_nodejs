@@ -27,56 +27,54 @@ const LoginForm = () => {
   };
 
   const handleChange = (event) => {
-    event.target.value
-      ? event.target.classList.add('withValue')
-      : event.target.classList.remove('withValue');
+    if (event) {
+      event.target.value
+        ? event.target.classList.add('withValue')
+        : event.target.classList.remove('withValue');
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-container">
         <div className="input-form">
-          <div>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              className="input-text"
-              ref={register({
-                required: 'Please enter an email',
-                pattern: {
-                  // value: /^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/,
-                  message: 'Not a valid email',
-                },
-              })}
-            />
-            <span className="floating-label">Email address</span>
-            {errors.email && (
-              <div className="errors">{errors.email.message}</div>
-            )}
-          </div>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            className="input-text"
+            onChange={handleChange}
+            ref={register({
+              required: 'Please enter an email',
+              pattern: {
+                // value: /^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/,
+                message: 'Not a valid email',
+              },
+            })}
+          />
+          <span className="floating-label">Email address</span>
+          {errors.email && <div className="errors">{errors.email.message}</div>}
         </div>
         <div className="input-form">
-          <div>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              className="input-text"
-              ref={register({
-                required: 'Please enter a password',
-                minLength: {
-                  value: 6,
-                  message: 'Should have at least 6 characters',
-                },
-              })}
-            />
-            <span className="floating-label">Password</span>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            className="input-text"
+            onChange={handleChange}
+            ref={register({
+              required: 'Please enter a password',
+              minLength: {
+                value: 6,
+                message: 'Should have at least 6 characters',
+              },
+            })}
+          />
+          <span className="floating-label">Password</span>
 
-            {errors.password && (
-              <div className="errors">{errors.password.message}</div>
-            )}
-          </div>
+          {errors.password && (
+            <div className="errors">{errors.password.message}</div>
+          )}
         </div>
         <div className="forgot-password">
           <Link href="/reset-password">
