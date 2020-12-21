@@ -14,16 +14,22 @@ const ResetPasswordForm = () => {
     router.push('/login');
   };
 
+  const handleChange = (event) => {
+    event.target.value
+      ? event.target.classList.add('withValue')
+      : event.target.classList.remove('withValue');
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-container">
         <div className="input-form">
-          <label htmlFor="email">Email address </label>
           <div>
             <input
               id="email"
               type="email"
               name="email"
+              className="input-text"
               ref={register({
                 required: 'Please enter an email',
                 pattern: {
@@ -32,6 +38,8 @@ const ResetPasswordForm = () => {
                 },
               })}
             />
+            <span className="floating-label">Email address </span>
+
             {errors.email && (
               <div className="errors">{errors.email.message}</div>
             )}

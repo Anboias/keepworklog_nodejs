@@ -26,16 +26,22 @@ const LoginForm = () => {
     console.log(user);
   };
 
+  const handleChange = (event) => {
+    event.target.value
+      ? event.target.classList.add('withValue')
+      : event.target.classList.remove('withValue');
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-container">
         <div className="input-form">
-          <label htmlFor="email">Email address</label>
           <div>
             <input
               id="email"
               type="email"
               name="email"
+              className="input-text"
               ref={register({
                 required: 'Please enter an email',
                 pattern: {
@@ -44,18 +50,19 @@ const LoginForm = () => {
                 },
               })}
             />
+            <span className="floating-label">Email address</span>
             {errors.email && (
               <div className="errors">{errors.email.message}</div>
             )}
           </div>
         </div>
         <div className="input-form">
-          <label htmlFor="password">Password</label>
           <div>
             <input
               id="password"
               type="password"
               name="password"
+              className="input-text"
               ref={register({
                 required: 'Please enter a password',
                 minLength: {
@@ -64,6 +71,8 @@ const LoginForm = () => {
                 },
               })}
             />
+            <span className="floating-label">Password</span>
+
             {errors.password && (
               <div className="errors">{errors.password.message}</div>
             )}
