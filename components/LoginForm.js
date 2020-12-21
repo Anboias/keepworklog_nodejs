@@ -32,6 +32,7 @@ const LoginForm = () => {
         ? event.target.classList.add('withValue')
         : event.target.classList.remove('withValue');
     }
+    setError(null);
   };
 
   return (
@@ -86,26 +87,18 @@ const LoginForm = () => {
       </div>
 
       <div className="buttons">
-        <div className="button" type="submit">
-          <span>
-            Login
-            {/* <button type="submit" className="auth-button"> */}
-            {/* Log in */}
-            {/* </button> */}
-            {/* <Button title="Login" type="submit" isLoading={isLoading} /> */}
-          </span>
-        </div>
-        <div className="button">
-          <div onClick={handleLoginWithGoogle}>
-            <img
-              className="google-icon"
-              // src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
-            />
-          </div>
-          <p className="btn-text">
-            <b>Sign in with google</b>
-          </p>
-        </div>
+        <button type="submit">Login</button>
+        <button
+          type="submit"
+          className="with-google"
+          onClick={handleLoginWithGoogle}
+        >
+          <img
+            class="google-icon"
+            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+          />{' '}
+          Sign in with google
+        </button>
       </div>
       {error?.message && <div className="errors">{error.message}</div>}
     </form>
