@@ -1,5 +1,10 @@
 @import './variables.scss';
 
+$grayLocal: #474747 !default;
+$orangeLocal: #F9A000 !default;
+
+
+
 @mixin rightSectionPadding {
     left: 4vw;
     right: 4vw;
@@ -13,13 +18,29 @@
     height: 70px;
     font-weight: 100;
     width: 100%;
-    margin-bottom: 30px;
+    margin-top: 50px;
     border-radius: 10px;
     border-color: rgba(0, 0, 0, 0.2);
     // border: 1px solid red;
     background-color: white;
 }
 
+.orange {
+    color: $orangeLocal;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// Remove autofill blue color
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
 
 #authentication {
     background: url('../public/assets/auth_bg.jpeg') no-repeat center center fixed;
@@ -28,6 +49,7 @@
     width: 100%;
     overflow: hidden;
     font-family: 'Montserrat';
+    color: $grayLocal;
 
     .container {
         position: relative;
@@ -83,7 +105,7 @@
             form {
                 @include rightSectionPadding;
                 position: absolute;
-                top: 22vh;
+                top: 18vh;
 
                 .form-container {
                     position: relative;
@@ -95,26 +117,30 @@
 
                         input:focus~.floating-label,
                         input.withValue~.floating-label {
-
+                            color: $gray;
                             top: 8px;
                             bottom: 10px;
-                            left: 22px;
+                            left: 23px;
                             font-size: 11px;
                             opacity: 1;
                         }
 
                         .input-text {
+
                             position: relative;
                             margin: auto 20px;
                             width: 100%;
                             font-size: 20px;
                             height: 35px;
                             border: none;
-                            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+                            border-bottom: 2px solid $gray;
+                            // border-bottom: 2px solid rgba(0, 0, 0, 0.5);
                         }
+
 
                         .floating-label {
                             position: absolute;
+                            color: $grayLocal;
                             pointer-events: none;
                             left: 20px;
                             top: 20px;
@@ -122,15 +148,10 @@
                             transition: 1.2s ease all;
                         }
 
-                        .has-value {
-                            top: 8px;
-                            bottom: 10px;
-                            left: 20px;
-                            font-size: 11px;
-                            opacity: 1;
-                        }
+                    }
 
-
+                    .forgot-password {
+                        padding: 10px 0 0 10px;
                     }
                 }
 
@@ -138,20 +159,31 @@
                 .buttons {
                     @include inputFormBox;
                     margin-top: 10vh;
+                    display: inline-flex;
 
                     .button {
                         width: 100%;
+                        height: 30px;
+                        font-size: 20px;
+                        width: 100%;
+                        height: 100%;
+                        background-color: $leftBgColor;
+                        color: $rightBgColor;
+                        border: none;
+                        outline: none;
+                        border-radius: 10px;
 
-                        button {
-                            font-size: 20px;
-                            width: 100%;
-                            height: 100%;
-                            background-color: $leftBgColor;
-                            color: $rightBgColor;
-                            border: none;
-                            outline: none;
-                            border-radius: 10px;
-                        }
+                        // button {
+
+                        //     font-size: 20px;
+                        //     width: 100%;
+                        //     height: 100%;
+                        //     background-color: $leftBgColor;
+                        //     color: $rightBgColor;
+                        //     border: none;
+                        //     outline: none;
+                        //     border-radius: 10px;
+                        // }
                     }
                 }
             }

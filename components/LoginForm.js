@@ -78,17 +78,20 @@ const LoginForm = () => {
         </div>
         <div className="forgot-password">
           <Link href="/reset-password">
-            <a href="#">Forgot your password?</a>
+            <a href="#" className="orange">
+              Forgot your password?
+            </a>
           </Link>
         </div>
       </div>
 
       <div className="buttons">
-        <div className="button">
+        <div className="button" type="submit">
           <span>
-            <button type="submit" className="auth-button">
-              Log in
-            </button>
+            Login
+            {/* <button type="submit" className="auth-button"> */}
+            {/* Log in */}
+            {/* </button> */}
             {/* <Button title="Login" type="submit" isLoading={isLoading} /> */}
           </span>
         </div>

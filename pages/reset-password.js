@@ -10,7 +10,9 @@ const ResetPasswordPage = () => {
         <p>
           {"Didn't forgot? "}
           <Link href="/login">
-            <a href="#">Login</a>
+            <a href="#" className="orange">
+              Login
+            </a>
           </Link>
         </p>
       </div>

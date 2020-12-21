@@ -10,7 +10,9 @@ const LoginPage = () => {
         <p>
           {"Don't have have an account? "}
           <Link href="/signup">
-            <a href="#">Sign Up</a>
+            <a href="#" className="orange">
+              Sign Up
+            </a>
           </Link>
         </p>
       </div>
