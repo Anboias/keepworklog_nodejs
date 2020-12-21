@@ -2,8 +2,8 @@ const Footer = () => (
   <footer id="footer">
     <p>
       Created by Bogdan Iasinovschi © 2020 |{' '}
-      <a href={'https://biasinov.com'} target="_blank">
-        biasinov.com
+      <a href={'mailto:biasinovschi@gmail.com'} target="_blank">
+        biasinovschi@gmail.com
       </a>
     </p>
   </footer>
