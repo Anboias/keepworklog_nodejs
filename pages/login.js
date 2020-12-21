@@ -8,7 +8,7 @@ const LoginPage = () => {
       <LoginForm />
       <div className="bottom-text">
         <p>
-          {"Don't have have an account? "}
+          {"Don't have an account? "}
           <Link href="/signup">
             <a href="#" className="orange">
               Sign Up
