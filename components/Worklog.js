@@ -21,7 +21,7 @@ const Worklog = ({
     <section id="worklog">
       <div className="container">
         <h1>
-          Worklog
+          Archive
           <select
             id="allyears"
             name="allyears"
