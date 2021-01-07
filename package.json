@@ -12,6 +12,7 @@
     "firebase-admin": "^9.4.1",
     "mongodb": "^3.6.3",
     "next": "10.0.3",
+    "next-seo": "^4.17.0",
     "nookies": "^2.5.0",
     "react": "17.0.1",
     "react-calendar": "^3.2.1",
