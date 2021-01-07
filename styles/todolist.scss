@@ -106,6 +106,9 @@
 
           p {
             cursor: text;
+            position: relative;
+            width: 90%;
+            overflow-wrap: break-word;
             margin: 10px 60px 10px 10px;
             padding: 8px;
             padding-left: 2px;
