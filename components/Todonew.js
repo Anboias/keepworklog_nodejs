@@ -47,8 +47,8 @@ const Todonew = ({ todos, setTodos, addTodoElement, sortingType }) => {
             type="text"
             id="fname"
             name="fname"
-            placeholder="Add a new task. Keep it simple. Around 150 chars should be enough."
-            maxLength="150"
+            placeholder="Add a new task."
+            // maxLength="150"
           />
           <br />
         </form>{' '}
