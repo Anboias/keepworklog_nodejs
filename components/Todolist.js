@@ -29,11 +29,11 @@ const Todolist = ({
       <div className="container">
         <ul className="todo-list sortable">
           <li className="item-first">
-            <button onClick={handleArchive}>Archive all completed</button>
+            <button onClick={handleArchive}>Archive completed tasks</button>
             <button onClick={handleOrderType}>
               {nextSortingType === 'asc'
-                ? 'Show latest first'
-                : 'Show newest first'}
+                ? 'Show latest added first'
+                : 'Show newest added first'}
             </button>
           </li>
           {todos

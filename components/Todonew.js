@@ -39,7 +39,7 @@ const Todonew = ({ todos, setTodos, addTodoElement, sortingType }) => {
         <form autoComplete="off">
           <button onClick={handleClick}>
             <i className="fas fa-plus-circle fa-3x"> </i>{' '}
-          </button>{' '}
+          </button>
           {/* <h1>DATA {JSON.stringify(data}</h1> */}{' '}
           <input
             onChange={(e) => setValue(e.target.value)}
